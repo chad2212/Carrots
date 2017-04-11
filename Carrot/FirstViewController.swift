@@ -8,7 +8,12 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+struct moviesList{
+    let title : String
+    
+}
+
+class FirstViewController: UIViewController UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +26,9 @@ class FirstViewController: UIViewController {
     }
 
 
+    func searchList()
+    {
+        
+    }
 }
 

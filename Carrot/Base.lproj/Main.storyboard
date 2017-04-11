@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,35 +39,6 @@
             </objects>
             <point key="canvasLocation" x="1076" y="168"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="xDG-B0-UKk">
-            <objects>
-                <tableViewController id="0Ke-5u-6UC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5xA-j9-hGs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yww-2K-stS">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yww-2K-stS" id="mU6-Bh-Gp6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="0Ke-5u-6UC" id="UCo-tp-s67"/>
-                            <outlet property="delegate" destination="0Ke-5u-6UC" id="va2-uv-bqB"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="TIt-hK-E8J"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lVa-KE-XYe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2892" y="-566"/>
-        </scene>
         <!--First View Controller-->
         <scene sceneID="maL-lv-MbN">
             <objects>
@@ -97,7 +69,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="145" height="147"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-e0-hXK">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-e0-hXK">
                                                     <rect key="frame" x="0.0" y="0.0" width="145" height="89"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -113,7 +85,7 @@
                                         <connections>
                                             <outlet property="groceryImage" destination="w4e-e0-hXK" id="SaU-V7-0Ii"/>
                                             <outlet property="groceryTitle" destination="4EM-QD-ANr" id="kFi-z6-LGI"/>
-                                            <segue destination="0Ke-5u-6UC" kind="push" id="jid-j2-Pfy"/>
+                                            <segue destination="fdF-Ki-LE0" kind="show" identifier="segueGrocery" id="Xpf-M9-3VO"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -129,6 +101,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42f-Sh-feG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2052" y="-566.26686656671666"/>
+        </scene>
+        <!--Grocery Controller-->
+        <scene sceneID="FEd-vb-YKg">
+            <objects>
+                <viewController id="fdF-Ki-LE0" customClass="GroceryController" customModule="Carrot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qzj-Mq-wK1"/>
+                        <viewControllerLayoutGuide type="bottom" id="etq-us-F4e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gDK-Mi-sgd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Pv-8C-HAZ">
+                                <rect key="frame" x="16" y="64" width="343" height="37"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mr-Ly-XoK">
+                                        <rect key="frame" x="0.0" y="0.0" width="72.5" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H8i-m0-8AL">
+                                        <rect key="frame" x="72.5" y="0.0" width="270.5" height="37"/>
+                                        <state key="normal" image="plus">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="5oK-7V-cp3" kind="popoverPresentation" popoverAnchorView="H8i-m0-8AL" id="YN6-lD-Khr">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="H8i-m0-8AL" secondAttribute="trailing" id="nk6-Wn-YgK"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EuM-x7-nO1">
+                                <rect key="frame" x="0.0" y="101" width="375" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="TdP-sz-jSJ"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemizedCell" id="BJP-dD-dIP">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BJP-dD-dIP" id="kLx-pR-4dr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Pv-8C-HAZ" firstAttribute="top" secondItem="qzj-Mq-wK1" secondAttribute="bottom" id="9kN-5M-GaK"/>
+                            <constraint firstItem="EuM-x7-nO1" firstAttribute="leading" secondItem="gDK-Mi-sgd" secondAttribute="leading" id="GNo-LT-Pyj"/>
+                            <constraint firstItem="EuM-x7-nO1" firstAttribute="top" secondItem="2Pv-8C-HAZ" secondAttribute="bottom" id="P7y-6y-Vt7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Pv-8C-HAZ" secondAttribute="trailing" id="WDU-fi-A31"/>
+                            <constraint firstItem="etq-us-F4e" firstAttribute="top" secondItem="EuM-x7-nO1" secondAttribute="bottom" constant="-1" id="bxy-VI-EUu"/>
+                            <constraint firstItem="2Pv-8C-HAZ" firstAttribute="leading" secondItem="gDK-Mi-sgd" secondAttribute="leadingMargin" id="gW0-9i-RvE"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qrh-NF-SJg"/>
+                    <connections>
+                        <outlet property="groceryItemized" destination="EuM-x7-nO1" id="cqi-vH-3ha"/>
+                        <outlet property="groceryType" destination="4mr-Ly-XoK" id="r12-dA-0um"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gzZ-vz-EhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2785" y="-566"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="izT-ZF-zzm">
+            <objects>
+                <viewController id="5oK-7V-cp3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PIg-yQ-C7Q"/>
+                        <viewControllerLayoutGuide type="bottom" id="JIX-fh-2ZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ng1-Gr-qek">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5z-LW-0fd">
+                                <rect key="frame" x="0.0" y="20" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Go back to List"/>
+                                <connections>
+                                    <segue destination="Gc5-eX-Fec" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="QYJ-WJ-Wk8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2iW-8x-z6z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Gc5-eX-Fec" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3504.8000000000002" y="-566.26686656671666"/>
         </scene>
         <!--Fridge-->
         <scene sceneID="GcO-fH-QmW">
@@ -201,5 +278,6 @@
         <image name="cookBook" width="22" height="24"/>
         <image name="fridge" width="20" height="24"/>
         <image name="hourGlass" width="25" height="25"/>
+        <image name="plus" width="37" height="37"/>
     </resources>
 </document>

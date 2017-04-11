@@ -8,23 +8,20 @@
 
 import UIKit
 
-struct groceryList{
-    let title : String
-    let image : UIImage
-}
+
 
 class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var Groceries: UICollectionView!
 
-    var allGroceries = [groceryList]()
+    var allGroceries = [groceryItem]()
     
     override func viewDidLoad() {
         
-        allGroceries.append(groceryList(title:"Meat",image:#imageLiteral(resourceName: "meat")))
-        allGroceries.append(groceryList(title:"Produce",image:#imageLiteral(resourceName: "produce")))
-        allGroceries.append(groceryList(title:"Dairy",image:#imageLiteral(resourceName: "dairy")))
-        allGroceries.append(groceryList(title:"Others",image:#imageLiteral(resourceName: "other")))
+        allGroceries.append(groceryItem(title:"Meat",image:#imageLiteral(resourceName: "meat")))
+        allGroceries.append(groceryItem(title:"Produce",image:#imageLiteral(resourceName: "produce")))
+        allGroceries.append(groceryItem(title:"Dairy",image:#imageLiteral(resourceName: "dairy")))
+        allGroceries.append(groceryItem(title:"Others",image:#imageLiteral(resourceName: "other")))
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -56,6 +53,8 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
         if(segue.identifier == "segueGrocery"){
             let svc = segue.destination as! GroceryController
             let indexPath = Groceries.indexPath(for: sender as! groceryCell)
+            print(indexPath!.row)
+            print(allGroceries[indexPath!.row].title)
             svc.toPass = allGroceries[indexPath!.row]
         }
     }

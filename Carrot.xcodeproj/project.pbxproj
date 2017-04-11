@@ -15,6 +15,8 @@
 		EADA98D21E9D21BE0054E084 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EADA98D01E9D21BE0054E084 /* LaunchScreen.storyboard */; };
 		EADA98DD1E9D21BE0054E084 /* CarrotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98DC1E9D21BE0054E084 /* CarrotTests.swift */; };
 		EADA98E81E9D21BE0054E084 /* CarrotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98E71E9D21BE0054E084 /* CarrotUITests.swift */; };
+		EAEEADE61E9D43510096A260 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE51E9D43510096A260 /* GroceryController.swift */; };
+		EAEEADE81E9D43F50096A260 /* groceryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE71E9D43F50096A260 /* groceryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		EADA98E31E9D21BE0054E084 /* CarrotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarrotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADA98E71E9D21BE0054E084 /* CarrotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrotUITests.swift; sourceTree = "<group>"; };
 		EADA98E91E9D21BE0054E084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAEEADE51E9D43510096A260 /* GroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
+		EAEEADE71E9D43F50096A260 /* groceryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				EADA98C51E9D21BE0054E084 /* AppDelegate.swift */,
 				EADA98C71E9D21BE0054E084 /* FirstViewController.swift */,
+				EAEEADE71E9D43F50096A260 /* groceryCell.swift */,
+				EAEEADE51E9D43510096A260 /* GroceryController.swift */,
 				EADA98C91E9D21BE0054E084 /* SecondViewController.swift */,
 				EADA98CB1E9D21BE0054E084 /* Main.storyboard */,
 				EADA98CE1E9D21BE0054E084 /* Assets.xcassets */,
@@ -263,7 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EADA98CA1E9D21BE0054E084 /* SecondViewController.swift in Sources */,
+				EAEEADE61E9D43510096A260 /* GroceryController.swift in Sources */,
 				EADA98C61E9D21BE0054E084 /* AppDelegate.swift in Sources */,
+				EAEEADE81E9D43F50096A260 /* groceryCell.swift in Sources */,
 				EADA98C81E9D21BE0054E084 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +517,7 @@
 				EADA98EE1E9D21BE0054E084 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EADA98EF1E9D21BE0054E084 /* Build configuration list for PBXNativeTarget "CarrotTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +526,7 @@
 				EADA98F11E9D21BE0054E084 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EADA98F21E9D21BE0054E084 /* Build configuration list for PBXNativeTarget "CarrotUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +535,7 @@
 				EADA98F41E9D21BE0054E084 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

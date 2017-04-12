@@ -26,5 +26,60 @@ class newGroceryItemController: UIViewController {
         performSegue(withIdentifier: "unwindToList", sender: self)
     }
     
+    @IBAction func addApple(_ sender: UIButton) {
+        if checkIfExist(name: "Apple")
+        {
+            addItem(name:"Apple",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Apple",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Produce"))
+        }
+        
+    }
+    
+    @IBAction func addBanana(_ sender: UIButton) {
+        if checkIfExist(name: "Banana")
+        {
+            addItem(name:"Banana",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Banana",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Produce"))
+        }    }
 
+    @IBAction func addGroundBeef(_ sender: UIButton) {
+        if checkIfExist(name: "Ground Beef")
+        {
+            addItem(name:"Ground Beef",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Ground Beef",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Meat"))
+        }
+    }
+    
+    func checkIfExist(name:String) -> Bool
+    {
+        for item in localGroceryList
+        {
+            if (item.name == name)
+            {
+                return true
+            }
+        }
+        return false
+    }
+    func addItem(name:String, count:Int)
+    {
+        var counter : Int = 0
+        for item in localGroceryList
+        {
+            if (item.name == name)
+            {
+                localGroceryList[counter].count+=1
+            }
+            counter+=1
+        }
+    }
 }

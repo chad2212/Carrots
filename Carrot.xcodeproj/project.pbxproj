@@ -16,9 +16,10 @@
 		EADA98DD1E9D21BE0054E084 /* CarrotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98DC1E9D21BE0054E084 /* CarrotTests.swift */; };
 		EADA98E81E9D21BE0054E084 /* CarrotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98E71E9D21BE0054E084 /* CarrotUITests.swift */; };
 		EAEEADE61E9D43510096A260 /* GroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE51E9D43510096A260 /* GroceryController.swift */; };
-		EAEEADE81E9D43F50096A260 /* groceryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE71E9D43F50096A260 /* groceryCell.swift */; };
-		EAEEADEA1E9D7E910096A260 /* groceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE91E9D7E910096A260 /* groceryItem.swift */; };
+		EAEEADE81E9D43F50096A260 /* groceryTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE71E9D43F50096A260 /* groceryTypeCell.swift */; };
+		EAEEADEA1E9D7E910096A260 /* groceryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADE91E9D7E910096A260 /* groceryModels.swift */; };
 		EAEEADEC1E9D873A0096A260 /* newGroceryItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADEB1E9D873A0096A260 /* newGroceryItemController.swift */; };
+		EAEEADF11E9D9FA10096A260 /* groceryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEEADF01E9D9FA10096A260 /* groceryTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +55,10 @@
 		EADA98E71E9D21BE0054E084 /* CarrotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrotUITests.swift; sourceTree = "<group>"; };
 		EADA98E91E9D21BE0054E084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAEEADE51E9D43510096A260 /* GroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroceryController.swift; sourceTree = "<group>"; };
-		EAEEADE71E9D43F50096A260 /* groceryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryCell.swift; sourceTree = "<group>"; };
-		EAEEADE91E9D7E910096A260 /* groceryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryItem.swift; sourceTree = "<group>"; };
+		EAEEADE71E9D43F50096A260 /* groceryTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryTypeCell.swift; sourceTree = "<group>"; };
+		EAEEADE91E9D7E910096A260 /* groceryModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryModels.swift; sourceTree = "<group>"; };
 		EAEEADEB1E9D873A0096A260 /* newGroceryItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newGroceryItemController.swift; sourceTree = "<group>"; };
+		EAEEADF01E9D9FA10096A260 /* groceryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = groceryTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +140,9 @@
 		EAEEADED1E9D89490096A260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EAEEADE71E9D43F50096A260 /* groceryCell.swift */,
-				EAEEADE91E9D7E910096A260 /* groceryItem.swift */,
+				EAEEADE71E9D43F50096A260 /* groceryTypeCell.swift */,
+				EAEEADF01E9D9FA10096A260 /* groceryTableCell.swift */,
+				EAEEADE91E9D7E910096A260 /* groceryModels.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -302,8 +305,9 @@
 				EAEEADE61E9D43510096A260 /* GroceryController.swift in Sources */,
 				EAEEADEC1E9D873A0096A260 /* newGroceryItemController.swift in Sources */,
 				EADA98C61E9D21BE0054E084 /* AppDelegate.swift in Sources */,
-				EAEEADE81E9D43F50096A260 /* groceryCell.swift in Sources */,
-				EAEEADEA1E9D7E910096A260 /* groceryItem.swift in Sources */,
+				EAEEADF11E9D9FA10096A260 /* groceryTableCell.swift in Sources */,
+				EAEEADE81E9D43F50096A260 /* groceryTypeCell.swift in Sources */,
+				EAEEADEA1E9D7E910096A260 /* groceryModels.swift in Sources */,
 				EADA98C81E9D21BE0054E084 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

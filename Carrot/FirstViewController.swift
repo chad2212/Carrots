@@ -14,14 +14,14 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     @IBOutlet var Groceries: UICollectionView!
 
-    var allGroceries = [groceryItem]()
+    var allGroceryTypes = [groceryType]()
     
     override func viewDidLoad() {
         
-        allGroceries.append(groceryItem(title:"Meat",image:#imageLiteral(resourceName: "meat")))
-        allGroceries.append(groceryItem(title:"Produce",image:#imageLiteral(resourceName: "produce")))
-        allGroceries.append(groceryItem(title:"Dairy",image:#imageLiteral(resourceName: "dairy")))
-        allGroceries.append(groceryItem(title:"Others",image:#imageLiteral(resourceName: "other")))
+        allGroceryTypes.append(groceryType(title:"Meat",image:#imageLiteral(resourceName: "meat")))
+        allGroceryTypes.append(groceryType(title:"Produce",image:#imageLiteral(resourceName: "produce")))
+        allGroceryTypes.append(groceryType(title:"Dairy",image:#imageLiteral(resourceName: "dairy")))
+        allGroceryTypes.append(groceryType(title:"Others",image:#imageLiteral(resourceName: "other")))
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -39,9 +39,9 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groceryCell", for: indexPath) as! groceryCell
-        if(indexPath.row < allGroceries.count){
-            let data = allGroceries[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groceryTypeCell", for: indexPath) as! groceryTypeCell
+        if(indexPath.row < allGroceryTypes.count){
+            let data = allGroceryTypes[indexPath.row]
             cell.groceryImage.clipsToBounds = true
             cell.groceryImage.image = data.image
             cell.groceryTitle.text = data.title
@@ -52,10 +52,8 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func prepare(for segue: UIStoryboardSegue, sender: Any!){
         if(segue.identifier == "segueGrocery"){
             let svc = segue.destination as! GroceryController
-            let indexPath = Groceries.indexPath(for: sender as! groceryCell)
-            print(indexPath!.row)
-            print(allGroceries[indexPath!.row].title)
-            svc.toPass = allGroceries[indexPath!.row]
+            let indexPath = Groceries.indexPath(for: sender as! groceryTypeCell)
+            svc.toPass = allGroceryTypes[indexPath!.row]
         }
     }
     

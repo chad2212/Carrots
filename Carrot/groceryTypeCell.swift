@@ -1,5 +1,5 @@
 //
-//  groceryCell.swift
+//  groceryTypeCell.swift
 //  Carrot
 //
 //  Created by Shungheon Chai on 4/11/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class groceryCell: UICollectionViewCell {
+class groceryTypeCell: UICollectionViewCell {
     weak var delegate: UISearchBarDelegate?
     @IBOutlet weak var groceryImage: UIImageView!
     @IBOutlet weak var groceryTitle: UILabel!

@@ -62,7 +62,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="groceryCell" id="jVK-Bz-9ya" customClass="groceryCell" customModule="Carrot" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="groceryTypeCell" id="jVK-Bz-9ya" customClass="groceryTypeCell" customModule="Carrot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="145" height="147"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -146,13 +146,33 @@
                                     <constraint firstAttribute="width" constant="375" id="TdP-sz-jSJ"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemizedCell" id="BJP-dD-dIP">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groceryTableCell" id="BJP-dD-dIP" customClass="groceryTableCell" customModule="Carrot" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BJP-dD-dIP" id="kLx-pR-4dr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc1-LL-6Q7">
+                                                    <rect key="frame" x="8" y="11" width="175" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvI-dt-Yv2">
+                                                    <rect key="frame" x="325" y="14" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="itemName" destination="hc1-LL-6Q7" id="Yg1-Gn-JnK"/>
+                                            <outlet property="itemNumber" destination="yvI-dt-Yv2" id="gjr-7F-aou"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -175,12 +195,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzZ-vz-EhF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2785" y="-566"/>
+            <point key="canvasLocation" x="2784.8000000000002" y="-566.26686656671666"/>
         </scene>
-        <!--View Controller-->
+        <!--New Grocery Item Controller-->
         <scene sceneID="izT-ZF-zzm">
             <objects>
-                <viewController id="5oK-7V-cp3" sceneMemberID="viewController">
+                <viewController id="5oK-7V-cp3" customClass="newGroceryItemController" customModule="Carrot" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PIg-yQ-C7Q"/>
                         <viewControllerLayoutGuide type="bottom" id="JIX-fh-2ZC"/>
@@ -196,6 +216,30 @@
                                 <state key="normal" title="Go back to List"/>
                                 <connections>
                                     <segue destination="Gc5-eX-Fec" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="QYJ-WJ-Wk8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Stv-EG-M5A">
+                                <rect key="frame" x="140" y="281" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add a banana"/>
+                                <connections>
+                                    <action selector="addBanana:" destination="5oK-7V-cp3" eventType="touchUpInside" id="cXd-1z-ccj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5N-u0-LCc">
+                                <rect key="frame" x="129" y="331" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add ground beef"/>
+                                <connections>
+                                    <action selector="addGroundBeef:" destination="5oK-7V-cp3" eventType="touchUpInside" id="3ON-GM-Tgc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wPB-m6-zoq">
+                                <rect key="frame" x="142" y="233" width="90" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add an apple"/>
+                                <connections>
+                                    <action selector="addApple:" destination="5oK-7V-cp3" eventType="touchUpInside" id="odu-pD-d6p"/>
                                 </connections>
                             </button>
                         </subviews>

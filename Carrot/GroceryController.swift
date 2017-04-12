@@ -72,11 +72,11 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         //deleting process
+        let tempList:[groceryItem] = selectCorrectList(identifier: (toPass?.title)!)
         if editingStyle == .delete {
-            //let deleteElement = localMovieArray[indexPath.row]
-            //localMovieArray = localMovieArray.filter() { $0 != deleteElement }
-            //reloadFavoriteMovieData(newArr: localMovieArray)
-            
+            let deleteElement = tempList[indexPath.row]
+            deleteItem(identifier: deleteElement)
+            separateIntoDifferentList()
             groceryItemized.reloadData()
             
         }
@@ -110,7 +110,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
                 allProduceGroceries.append(item)
             case "Dairy":
                 allDairyGroceries.append(item)
-            case "Other":
+            case "Others":
                 allOtherGroceries.append(item)
             default:
                 print("There is an item with a weird type: \(item.name)")
@@ -122,7 +122,6 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func selectCorrectList(identifier:String)->[groceryItem]
     {
-        print("From selectCorrectList \(identifier)")
         switch identifier {
         case "Meat":
             return allMeatGroceries
@@ -136,6 +135,24 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             print("Unknown identifier passed into func selectCorrectList in GroceryController.swift")
             return localGroceryList
         }
+    }
+    
+    func deleteItem(identifier: groceryItem)
+    {
+        localGroceryList.remove(at: localGroceryList.index(where: {$0.name == identifier.name})!)
+        switch identifier.type {
+        case "Meat":
+            allMeatGroceries.remove(at: allMeatGroceries.index(where: {$0.name == identifier.name})!)
+        case "Produce":
+            allProduceGroceries.remove(at: allProduceGroceries.index(where: {$0.name == identifier.name})!)
+        case "Dairy":
+            allDairyGroceries.remove(at: allDairyGroceries.index(where: {$0.name == identifier.name})!)
+        case "Others":
+            allOtherGroceries.remove(at: allOtherGroceries.index(where: {$0.name == identifier.name})!)
+        default:
+            print("Unknown identifier passed into func deleteItem in GroceryController.swift")
+        }
+
     }
 
 }

@@ -46,7 +46,8 @@ class newGroceryItemController: UIViewController {
         else
         {
             localGroceryList.append(groceryItem(name:"Banana",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Produce"))
-        }    }
+        }
+    }
 
     @IBAction func addGroundBeef(_ sender: UIButton) {
         if checkIfExist(name: "Ground Beef")
@@ -58,6 +59,55 @@ class newGroceryItemController: UIViewController {
             localGroceryList.append(groceryItem(name:"Ground Beef",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Meat"))
         }
     }
+    
+    
+    @IBAction func addChickenBreast(_ sender: UIButton) {
+        if checkIfExist(name: "Chicken Breast")
+        {
+            addItem(name:"Chicken Breast",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Chicken Breast",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Meat"))
+        }
+    }
+    
+    @IBAction func addMilk(_ sender: UIButton) {
+        if checkIfExist(name: "Milk")
+        {
+            addItem(name:"Milk",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Milk",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Dairy"))
+        }
+    }
+    
+    @IBAction func addEgg(_ sender: UIButton) {
+        if checkIfExist(name: "Egg")
+        {
+            addItem(name:"Egg",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Egg",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Dairy"))
+        }
+    }
+    
+    @IBAction func addSomeOther(_ sender: UIButton) {
+        if checkIfExist(name: "Other1")
+        {
+            addItem(name:"Other1",count:1)
+        }
+        else
+        {
+            localGroceryList.append(groceryItem(name:"Other1",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Others"))
+        }
+    }
+    
+    
+    
+    
     
     func checkIfExist(name:String) -> Bool
     {

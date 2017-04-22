@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SQLite
 
 
 
@@ -31,7 +31,6 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     var toPass: groceryType?
     
     override func viewDidLoad() {
-        //Just as a test
         
         super.viewDidLoad()
         if((toPass?.title) != nil){
@@ -42,7 +41,10 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
         groceryItemized.dataSource = self
         groceryItemized.reloadData()
         separateIntoDifferentList()
-        // Do view setup here.
+        
+        //Getting data back from database
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let db = try? Connection("\(path)/db.sqlite3")
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -16,10 +16,10 @@ struct groceryType{
 struct groceryItem{
     var name : String
     var count : Int
-    var stored : String
+    var storedLocation : String
     var purchasedDate : Date
     var expiringDate : Date
-    var type : String
+    var foodType : String
     
     func addItem(name:String, count:Int)
     {

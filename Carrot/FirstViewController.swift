@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SQLite
 
 
 class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
@@ -17,6 +17,9 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     var allGroceryTypes = [groceryType]()
     
     override func viewDidLoad() {
+        
+        
+        let db:Connection? = initialCreateTable()
         
         allGroceryTypes.append(groceryType(title:"Meat",image:#imageLiteral(resourceName: "meat")))
         allGroceryTypes.append(groceryType(title:"Produce",image:#imageLiteral(resourceName: "produce")))
@@ -63,5 +66,36 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     {
         
     }
+    
+    func initialCreateTable() -> Connection?
+    {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let db = try? Connection("\(path)/db.sqlite3")
+        let foods = Table("foods")
+        let id = Expression<Int64>("id")
+        let name = Expression<String>("name")
+        let count = Expression<Double>("count")
+        let storedLocation = Expression<Bool>("storedLocation")
+        let purchasedDate = Expression<String>("purchasedDate")
+        let expiringDate = Expression<String>("expiringDate")
+        let foodType = Expression<String>("foodType")
+        
+        
+        do {
+            try db?.run(foods.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
+                t.column(name)  //     "email" TEXT UNIQUE NOT NULL,
+                t.column(count)                 //     "name" TEXT
+                t.column(storedLocation)
+                t.column(purchasedDate)
+                t.column(expiringDate)
+                t.column(foodType)
+            })
+        } catch{
+            print("Table not created")
+        }
+        return db
+    }
+    
 }
 

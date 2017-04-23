@@ -27,7 +27,7 @@ public class SQLiteDB {
         let path = NSSearchPathForDirectoriesInDomains(
             .documentDirectory, .userDomainMask, true
             ).first!
-        print("Path: \(path)")
+        print("Path: \(path) \n")
         do {
             db = try Connection("\(path)/db.sqlite3")
         } catch {
@@ -137,6 +137,14 @@ public class SQLiteDB {
             print ("Counter Increment failed for ")
         }
         return false
+    }
+    
+    func whereNameMatches(input:String) -> [groceryItem]? {
+        let returnArr:[groceryItem]? = nil
+        let allMatchedItem = foodItems.where(name.lowercaseString == input)
+        print ("\n\(allMatchedItem)\n")
+        
+        return returnArr
     }
         
 }

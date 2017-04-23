@@ -57,7 +57,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
         if(segue.identifier == "segueGrocery"){
             let svc = segue.destination as! GroceryController
             let indexPath = Groceries.indexPath(for: sender as! groceryTypeCell)
-            svc.toPass = allGroceryTypes[indexPath!.row]
+            svc.toPass = allGroceryTypes[indexPath!.row].title
         }
     }
     
@@ -68,41 +68,6 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
         
     }
     
-    /*
-    func initialCreateTable() -> Connection?
-    {
-        
-        print("creating table")
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let db = try? Connection("\(path)/db.sqlite3")
-        
-        let id = Expression<Int64>("id")
-        let name = Expression<String>("name")
-        let count = Expression<Double>("count")
-        let storedLocation = Expression<Bool>("storedLocation")
-        let purchasedDate = Expression<String>("purchasedDate")
-        let expiringDate = Expression<String>("expiringDate")
-        let foodType = Expression<String>("foodType")
-        
-        
-        do {
-            try db?.run(foods.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
-                t.column(name)  //     "email" TEXT UNIQUE NOT NULL,
-                t.column(count)                 //     "name" TEXT
-                t.column(storedLocation)
-                t.column(purchasedDate)
-                t.column(expiringDate)
-                t.column(foodType)
-            })
-            print("Table Successfully created")
-        } catch{
-            print("Table not created")
-        }
-        print("done creating a table")
-        return db
- 
-    }*/
     
 }
 

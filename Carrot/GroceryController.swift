@@ -16,6 +16,8 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet var groceryItemized: UITableView!
     @IBOutlet var groceryType: UILabel!
     
+    var passingIndexPath:IndexPath? = nil
+    
     //4 separate lists
     var allMeatGroceries:[groceryItem] = []
     var allProduceGroceries:[groceryItem] = []
@@ -24,18 +26,19 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     //segue control to go back since it's not a typical push
     @IBAction func unwindToList(segue:UIStoryboardSegue) {
+        localGroceryList =  SQLiteDB.instance.getGroceryItems()
         separateIntoDifferentList()
         groceryItemized.reloadData()
     }
     
-    var toPass: groceryType?
+    var toPass: String?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        if((toPass?.title) != nil){
+        if(toPass != nil){
             //Load the database here based on the title
-            self.groceryType.text = toPass?.title
+            self.groceryType.text = toPass!
         }
         groceryItemized.delegate = self
         groceryItemized.dataSource = self
@@ -61,13 +64,13 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return selectCorrectList(identifier: (toPass?.title)!).count
+        return selectCorrectList(identifier: (toPass!)).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: "groceryTableCell", for: indexPath) as! groceryTableCell
-            let tempList:[groceryItem] = selectCorrectList(identifier: (toPass?.title)!)
+            let tempList:[groceryItem] = selectCorrectList(identifier: (toPass!))
             cell.itemName?.text = tempList[indexPath.row].name
             cell.itemNumber?.text = String(tempList[indexPath.row].count)
 
@@ -76,7 +79,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         //deleting process
-        let tempList:[groceryItem] = selectCorrectList(identifier: (toPass?.title)!)
+        let tempList:[groceryItem] = selectCorrectList(identifier: (toPass!))
         if editingStyle == .delete {
             let deleteElement = tempList[indexPath.row]
             deleteItem(identifier: deleteElement)
@@ -89,7 +92,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row): \(selectCorrectList(identifier: (toPass?.title)!)[indexPath.row])")
+        self.performSegue(withIdentifier: "detailedSegue", sender: indexPath)
     }
 
 
@@ -157,6 +160,15 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             print("Unknown identifier passed into func deleteItem in GroceryController.swift")
         }
 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!){
+        if(segue.identifier == "detailedSegue"){
+            let svc = segue.destination as! DetailedGroceryController
+            let indexPath = sender as! IndexPath
+            svc.toPass = selectCorrectList(identifier: (toPass!))[(indexPath.row)].name
+
+        }
     }
 
 }

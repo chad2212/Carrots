@@ -11,6 +11,8 @@
 		EA3BCB4F1EABB5240060299E /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EA3BCB401EABB4CF0060299E /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		EABC0DE21EACF21700A29EC5 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DE11EACF21700A29EC5 /* DLRadioButton.m */; };
 		EABC0DE41EAD012E00A29EC5 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DE31EAD012E00A29EC5 /* SQLiteDB.swift */; };
+		EABC0DE61EAD468700A29EC5 /* DetailedGroceryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DE51EAD468700A29EC5 /* DetailedGroceryController.swift */; };
+		EABC0DE81EAD503100A29EC5 /* detailedGroceryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DE71EAD503100A29EC5 /* detailedGroceryTableCell.swift */; };
 		EADA98C61E9D21BE0054E084 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C51E9D21BE0054E084 /* AppDelegate.swift */; };
 		EADA98C81E9D21BE0054E084 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C71E9D21BE0054E084 /* FirstViewController.swift */; };
 		EADA98CA1E9D21BE0054E084 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C91E9D21BE0054E084 /* SecondViewController.swift */; };
@@ -119,6 +121,8 @@
 		EABC0DE01EACF21600A29EC5 /* Carrot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Carrot-Bridging-Header.h"; sourceTree = "<group>"; };
 		EABC0DE11EACF21700A29EC5 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		EABC0DE31EAD012E00A29EC5 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
+		EABC0DE51EAD468700A29EC5 /* DetailedGroceryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedGroceryController.swift; sourceTree = "<group>"; };
+		EABC0DE71EAD503100A29EC5 /* detailedGroceryTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedGroceryTableCell.swift; sourceTree = "<group>"; };
 		EADA98C21E9D21BE0054E084 /* Carrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADA98C51E9D21BE0054E084 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EADA98C71E9D21BE0054E084 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 		EAEEADED1E9D89490096A260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EABC0DE71EAD503100A29EC5 /* detailedGroceryTableCell.swift */,
 				EABC0DE31EAD012E00A29EC5 /* SQLiteDB.swift */,
 				EAEEADE71E9D43F50096A260 /* groceryTypeCell.swift */,
 				EAEEADF01E9D9FA10096A260 /* groceryTableCell.swift */,
@@ -258,6 +263,7 @@
 		EAEEADEF1E9D89810096A260 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EABC0DE51EAD468700A29EC5 /* DetailedGroceryController.swift */,
 				EADA98C71E9D21BE0054E084 /* FirstViewController.swift */,
 				EAEEADE51E9D43510096A260 /* GroceryController.swift */,
 				EAEEADEB1E9D873A0096A260 /* newGroceryItemController.swift */,
@@ -469,7 +475,9 @@
 				EAEEADF11E9D9FA10096A260 /* groceryTableCell.swift in Sources */,
 				EABC0DE41EAD012E00A29EC5 /* SQLiteDB.swift in Sources */,
 				EAEEADE81E9D43F50096A260 /* groceryTypeCell.swift in Sources */,
+				EABC0DE81EAD503100A29EC5 /* detailedGroceryTableCell.swift in Sources */,
 				EAEEADEA1E9D7E910096A260 /* groceryModels.swift in Sources */,
+				EABC0DE61EAD468700A29EC5 /* DetailedGroceryController.swift in Sources */,
 				EADA98C81E9D21BE0054E084 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

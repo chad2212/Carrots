@@ -42,7 +42,7 @@ public class SQLiteDB {
         do {
             try db!.run(foodItems.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
-                t.column(name, unique: true)
+                t.column(name)
                 t.column(count)
                 t.column(storedLocation)
                 t.column(purchasedDate)

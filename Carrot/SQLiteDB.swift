@@ -42,7 +42,7 @@ public class SQLiteDB {
         do {
             try db!.run(foodItems.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
-                t.column(name)
+                t.column(name, unique: true)
                 t.column(count)
                 t.column(storedLocation)
                 t.column(purchasedDate)
@@ -95,7 +95,7 @@ public class SQLiteDB {
             return groceryItems
     }
         
-    func deleteContact(cid: Int64) -> Bool {
+    func deleteGroceryItem(cid: Int64) -> Bool {
             do {
                 let item = foodItems.filter(id == cid)
                 try db!.run(item.delete())
@@ -106,7 +106,7 @@ public class SQLiteDB {
             return false
     }
         
-    func updateContact(cid:Int64, newFoodItem: groceryItem) -> Bool {
+    func updateGroceryItem(cid:Int64, newFoodItem: groceryItem) -> Bool {
             let item = foodItems.filter(id == cid)
             do {
                 let update = item.update([
@@ -125,6 +125,18 @@ public class SQLiteDB {
             }
             
             return false
+    }
+    
+    func incrementGroceryItem(cid:Int64) -> Bool {
+        let item = foodItems.filter(id == cid)
+        do{
+            if try db!.run(item.update(count++)) > 0{
+                return true
+            }
+        } catch {
+            print ("Counter Increment failed for ")
+        }
+        return false
     }
         
 }

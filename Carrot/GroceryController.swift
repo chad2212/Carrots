@@ -92,11 +92,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
         print("You tapped cell number \(indexPath.row): \(selectCorrectList(identifier: (toPass?.title)!)[indexPath.row])")
     }
 
-    
-    func loadFromDB()
-    {
-        //to be implemented
-    }
+
     
     func separateIntoDifferentList()
     {
@@ -145,6 +141,8 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func deleteItem(identifier: groceryItem)
     {
+        if SQLiteDB.instance.deleteGroceryItem(cid: identifier.id) {print("Deleting \(identifier.name) successful")}
+
         localGroceryList.remove(at: localGroceryList.index(where: {$0.name == identifier.name})!)
         switch identifier.foodType {
         case "Meat":

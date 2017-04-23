@@ -40,11 +40,13 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
         groceryItemized.delegate = self
         groceryItemized.dataSource = self
         groceryItemized.reloadData()
+        
+        localGroceryList = SQLiteDB.instance.getGroceryItems()
+        
         separateIntoDifferentList()
         
         //Getting data back from database
-        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let db = try? Connection("\(path)/db.sqlite3")
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,9 +105,11 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
         allDairyGroceries = []
         allOtherGroceries = []
         
+        
+        
         for item in localGroceryList
         {
-            switch item.type {
+            switch item.foodType {
             case "Meat":
                 allMeatGroceries.append(item)
             case "Produce":
@@ -142,7 +146,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     func deleteItem(identifier: groceryItem)
     {
         localGroceryList.remove(at: localGroceryList.index(where: {$0.name == identifier.name})!)
-        switch identifier.type {
+        switch identifier.foodType {
         case "Meat":
             allMeatGroceries.remove(at: allMeatGroceries.index(where: {$0.name == identifier.name})!)
         case "Produce":

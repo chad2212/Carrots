@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SQLite
 
 struct groceryType{
     let title : String
@@ -14,14 +15,15 @@ struct groceryType{
 }
 
 struct groceryItem{
+    var id : Int64
     var name : String
-    var count : Int
+    var count : Int64
     var storedLocation : String
     var purchasedDate : Date
     var expiringDate : Date
     var foodType : String
     
-    func addItem(name:String, count:Int)
+    func addItem(name:String, count:Int64)
     {
         var counter : Int = 0
         for item in localGroceryList
@@ -48,3 +50,4 @@ struct groceryItem{
 }
 
 var localGroceryList:[groceryItem] = []
+

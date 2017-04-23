@@ -19,8 +19,7 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
     override func viewDidLoad() {
         
         
-        let db:Connection? = initialCreateTable()
-        
+                
         allGroceryTypes.append(groceryType(title:"Meat",image:#imageLiteral(resourceName: "meat")))
         allGroceryTypes.append(groceryType(title:"Produce",image:#imageLiteral(resourceName: "produce")))
         allGroceryTypes.append(groceryType(title:"Dairy",image:#imageLiteral(resourceName: "dairy")))
@@ -31,6 +30,8 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
         Groceries.delegate = self
         Groceries.dataSource = self
         Groceries.reloadData()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,11 +68,14 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
         
     }
     
+    /*
     func initialCreateTable() -> Connection?
     {
+        
+        print("creating table")
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let db = try? Connection("\(path)/db.sqlite3")
-        let foods = Table("foods")
+        
         let id = Expression<Int64>("id")
         let name = Expression<String>("name")
         let count = Expression<Double>("count")
@@ -91,11 +95,14 @@ class FirstViewController: UIViewController, UICollectionViewDataSource, UIColle
                 t.column(expiringDate)
                 t.column(foodType)
             })
+            print("Table Successfully created")
         } catch{
             print("Table not created")
         }
+        print("done creating a table")
         return db
-    }
+ 
+    }*/
     
 }
 

@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import SQLite
 
 class newGroceryItemController: UIViewController {
     
 
+    var db:Connection? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        db = try? Connection("\(path)/db.sqlite3")
     }
     
     override func didReceiveMemoryWarning() {
@@ -26,88 +30,39 @@ class newGroceryItemController: UIViewController {
         performSegue(withIdentifier: "unwindToList", sender: self)
     }
     
-    @IBAction func addApple(_ sender: UIButton) {
-        if checkIfExist(name: "Apple")
-        {
-            addItem(name:"Apple",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Apple",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Produce"))
-        }
+ 
+    @IBOutlet var foodNameField: UITextField!
+    @IBOutlet var countNumber: UILabel!
+    
+    
+    @IBAction func countStepper(_ sender: UIStepper) {
+        countNumber.text = Int(sender.value).description
+    }
+    
+    @IBOutlet var locationField: UITextField!
+    
+    @IBOutlet var foodTypeField: UITextField!
+    
+    @IBOutlet var purchasedDateField: UITextField!
+    
+    @IBOutlet var expirationDateField: UITextField!
+    
+    @IBAction func createFoodItem(_ sender: UIButton) {
         
-    }
-    
-    @IBAction func addBanana(_ sender: UIButton) {
-        if checkIfExist(name: "Banana")
-        {
-            addItem(name:"Banana",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Banana",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Produce"))
-        }
-    }
+        let foodName = foodNameField.text!
+        let count = Int64(countNumber.text!)
+        let location = locationField.text!
+        let foodType = foodTypeField.text!
+        //let purchasedDate = stringToDate(dateInString: purchasedDateField.text!)
+        //let expirationDate = stringToDate(dateInString: expirationDateField.text!)
+        let purchasedDate = purchasedDateField.text!
+        let expirationDate = expirationDateField.text!
+        
+        print("Attempting to add food item with \(foodName), \(count), \(location), \(foodType), \(purchasedDate), \(expirationDate)")
+        
+        let _ = SQLiteDB.instance.addGroceryItem(addName: foodName, addCount: count!, addStoredLocation: location, addPurchasedDate: purchasedDate, addExpiringDate: expirationDate, addFoodType: foodType)
 
-    @IBAction func addGroundBeef(_ sender: UIButton) {
-        if checkIfExist(name: "Ground Beef")
-        {
-            addItem(name:"Ground Beef",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Ground Beef",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Meat"))
-        }
     }
-    
-    
-    @IBAction func addChickenBreast(_ sender: UIButton) {
-        if checkIfExist(name: "Chicken Breast")
-        {
-            addItem(name:"Chicken Breast",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Chicken Breast",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Meat"))
-        }
-    }
-    
-    @IBAction func addMilk(_ sender: UIButton) {
-        if checkIfExist(name: "Milk")
-        {
-            addItem(name:"Milk",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Milk",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Dairy"))
-        }
-    }
-    
-    @IBAction func addEgg(_ sender: UIButton) {
-        if checkIfExist(name: "Egg")
-        {
-            addItem(name:"Egg",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Egg",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Dairy"))
-        }
-    }
-    
-    @IBAction func addSomeOther(_ sender: UIButton) {
-        if checkIfExist(name: "Other1")
-        {
-            addItem(name:"Other1",count:1)
-        }
-        else
-        {
-            localGroceryList.append(groceryItem(name:"Other1",count:1,stored:"R",purchasedDate: Date(), expiringDate: Date(), type: "Others"))
-        }
-    }
-    
-    
-    
-    
     
     func checkIfExist(name:String) -> Bool
     {

@@ -30,7 +30,7 @@ public class SQLiteDB {
     private let recipes = Table("recipes");
     private let recipeID = Expression<Int64>("recipeID");
     private let recipeName = Expression<String>("recipeName");
-    
+    private let recipeInstructions = Expression<String>("instructions");
     
     //ingredient table
     private let ingredients = Table("ingredients");
@@ -75,6 +75,7 @@ public class SQLiteDB {
             try db!.run(recipes.create(ifNotExists: true) { t in
                 t.column(recipeID, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
                 t.column(recipeName)
+                t.column(recipeInstructions)
             })
         } catch {
             print("Unable to create table")
@@ -110,10 +111,11 @@ public class SQLiteDB {
         }
     }
     
-    func addRecipe(addName: String) -> Int64?{
+    func addRecipe(addName: String, addInstructions: String) -> Int64?{
         do {
             let insert = recipes.insert(
-                recipeName <- addName
+                recipeName <- addName,
+                recipeInstructions<-addInstructions
             )
             let id = try db!.run(insert)
             return id
@@ -228,7 +230,7 @@ public class SQLiteDB {
         
         do
         {
-            let items = try db!.prepare(foodItems.order(expiringDate.desc))
+            let items = try db!.prepare(foodItems.order(expiringDate.asc))
             for item in items{
                 groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType]));
             }
@@ -258,6 +260,7 @@ public class SQLiteDB {
                 recipes.append(recipe(
                     id: item[recipeID],
                     name: item[recipeName],
+                    instructions: item[recipeInstructions],
                     ingredientList: ingredientList
                 ))
             }
@@ -282,7 +285,7 @@ public class SQLiteDB {
         return ingredientList
     }
 
-    
+    //RETURNS THE NUMBER OF MISSING INGREDIENTS FOR A SPECIFIC RECIPE
     func findNumberMissing(inputID: Int64) -> String {
         var groceryNames = [String]()
         var groceryCounts = [Int]()
@@ -308,15 +311,22 @@ public class SQLiteDB {
                 let ingredientName = ingredient[self.ingredientName];
                 let ingredientCount = ingredient[self.ingredientCount];
                 totalIngredients += 1;
+                
+                var totalGroceryCounter = 0;
                 if(groceryCounts.count > 0)
                 {
                     for index in 0...groceryCounts.count-1
                     {
                     
-                        if(groceryNames[index] == ingredientName && Int64(groceryCounts[index]) >=  ingredientCount)
+                        if(groceryNames[index] == ingredientName )
                         {
-                            presentIngredientCounter += 1;
+                            totalGroceryCounter += groceryCounts[index]
+                           
                         }
+                    }
+                    if(ingredientCount <= Int64(totalGroceryCounter))
+                    {
+                         presentIngredientCounter += 1;
                     }
                 }
             }
@@ -328,6 +338,8 @@ public class SQLiteDB {
         return String(missingIngredientCounter);
         
     }
+    
+    //DELETES INGREDIENTS
     func deleteIngredientID(cid: Int64, name: String) -> Bool {
         do {
             let item = ingredients.filter(relatedRecipeID == cid && name == ingredientName)
@@ -350,7 +362,7 @@ public class SQLiteDB {
         }
         return false
     }
-    
+    //DELETES INGREDIENTS RELATED TO A SPECIFIC RECIPE
     func cascadeDelete(referencingID: Int64) -> Bool {
         do{
             let query = ingredients.filter(relatedRecipeID == referencingID)
@@ -363,6 +375,8 @@ public class SQLiteDB {
         return false
     }
     
+    
+    //RETURNS AN ARRAY OF BOOLEANS INDICATING WHETHER AN INDIVIDUAL HAS ENOUG OF A CERTAIN INGREDIENT.
     func returnMissingBooleanArray(inputID: Int) -> [Bool] {
         var groceryNames = [String]()
         var groceryCounts = [Int64]()
@@ -386,15 +400,24 @@ public class SQLiteDB {
                 let ingredientName = ingredient[self.ingredientName];
                 let ingredientCount = ingredient[self.ingredientCount];
                 var isInIngredientArray = false;
-                for index in 0...groceryCounts.count-1
+                var totalGroceryCount:Int64 = 0;
+                if(groceryCounts.count>0)
                 {
-                    if(groceryNames[index] == ingredientName && groceryCounts[index] >= ingredientCount)
+                    for index in 0...groceryCounts.count-1
                     {
-                        isInIngredientArray = true;
-                       
+                        if(groceryNames[index] == ingredientName)
+                        {
+                            totalGroceryCount += groceryCounts[index]
+                            
+                        }
                     }
+                
                 }
-                 missingIngredient.append(isInIngredientArray);
+                if(ingredientCount <= Int64(totalGroceryCount))
+                {
+                    isInIngredientArray = true;
+                }
+                missingIngredient.append(isInIngredientArray);
             }
         }
         catch {
@@ -404,10 +427,10 @@ public class SQLiteDB {
         
     }
 
-    
+    //RETRIEVES A RECIPE WITH A SPECIFIC RECIPE ID ( PARAMTER: INPUTID:THE RECIPE ID BEING RETREIVED)
     func getSpecificRecipe(inputID: Int64) -> recipe?
     {
-        var recipeItem  = recipe(id: 0 ,name: "bullshit" ,ingredientList: [])
+        var recipeItem  = recipe(id: 0 ,name: "" ,instructions: "",ingredientList: [])
         var ingredientList = [ingredientItem]()
         do{
             let output = try db!.prepare(self.recipes.filter(recipeID == inputID))
@@ -419,7 +442,7 @@ public class SQLiteDB {
                 }
                 
                 
-                recipeItem =  recipe(id: item[recipeID] , name: item[recipeName], ingredientList: ingredientList)
+                recipeItem =  recipe(id: item[recipeID] , name: item[recipeName],instructions: item[recipeInstructions], ingredientList: ingredientList)
             }
             
             

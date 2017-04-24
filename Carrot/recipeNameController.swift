@@ -14,15 +14,16 @@ class recipeNameController : UIViewController{
 
     
     @IBOutlet var recipeNameField: UITextField!
-    
+    @IBOutlet var instructionField: UITextView!
     @IBAction func createRecipe(_ sender: UIButton) {
-        let id = SQLiteDB.instance.addRecipe(addName: self.recipeNameField.text!)
+        let id = SQLiteDB.instance.addRecipe(addName: self.recipeNameField.text!, addInstructions: instructionField.text!)
         let list:[ingredientItem] = []
-        recipeObj = recipe(id: id!, name: self.recipeNameField.text!, ingredientList: list)
+        recipeObj = recipe(id: id!, name: self.recipeNameField.text!, instructions: instructionField.text!, ingredientList: list)
         print("Going to the ingridient adding page")
         
     }
     
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddIngridientSegue"){
             print("Inside segue controller to pass obj")

@@ -13,6 +13,7 @@ class ingredientsTableController: UIViewController, UITableViewDataSource, UITab
     var recipeIngredientList:[ingredientItem] = []
     var boolIngredientList:[Bool] = []
     
+    @IBOutlet var recipeInstructionField: UITextView!
     @IBOutlet var recipeTitle: UILabel!
     @IBOutlet var ingredientTable: UITableView!
     
@@ -30,7 +31,7 @@ class ingredientsTableController: UIViewController, UITableViewDataSource, UITab
         recipeIngredientList =  SQLiteDB.instance.getIngredients(recipeID: recipeObj!.id)
         
         recipeTitle.text = recipeObj?.name
-        
+        recipeInstructionField.text = recipeObj?.instructions
         print(boolIngredientList)
         //Getting data back from database
         

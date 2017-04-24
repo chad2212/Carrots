@@ -11,6 +11,8 @@ import UIKit
 class expiringTableCell: UITableViewCell {
 
     @IBOutlet weak var itemName: UILabel!
-    @IBOutlet weak var itemCount: UILabel!
-        
+ 
+    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var expDate: UILabel!
+    
 }

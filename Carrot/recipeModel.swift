@@ -12,6 +12,7 @@ import Foundation
 struct recipe{
     var id : Int64
     var name : String
+    var instructions : String
     var ingredientList:[ingredientItem]
     
 }

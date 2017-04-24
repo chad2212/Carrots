@@ -47,14 +47,13 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
             let cell = tableView.dequeueReusableCell(withIdentifier: "expiringTableCell", for: indexPath) as! expiringTableCell
                         
             cell.itemName?.text = expiringFoodList[indexPath.row].name
-            cell.itemCount?.text = String(expiringFoodList[indexPath.row].storedLocation)
-           
-            
+            cell.locationName?.text = String(expiringFoodList[indexPath.row].storedLocation)
+            cell.expDate?.text =  dateToString(stringInDate: expiringFoodList[indexPath.row].expiringDate)
             return cell
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print ("Here")
-        print (expiringFoodList)
+        //print ("Here")
+        //print (expiringFoodList)
         print (expiringFoodList[indexPath.row].name)
         self.performSegue(withIdentifier: "detailedSegue2", sender: expiringFoodList[indexPath.row].name)
     }

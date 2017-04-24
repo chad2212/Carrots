@@ -30,6 +30,9 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
         SQLiteDB.instance.addIngredient(addRecipeID: (receivedRecipeObj?.id)!, addIngredientName: nameInput!, addIngredientCount: Int64(countInput!)!, addMeasurementType: measurementInput!)
         ingredientList = SQLiteDB.instance.getIngredients(recipeID: (receivedRecipeObj?.id)!)
         ingredientTable.reloadData()
+        ingredientNameField.text = ""
+        ingredientCountField.text = ""
+        ingredientMeasurementTypeField.text = ""
     }
     
     override func viewDidLoad() {

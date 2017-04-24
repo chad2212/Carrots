@@ -325,8 +325,110 @@ public class SQLiteDB {
         return String(missingIngredientCounter);
         
     }
-
+    func deleteIngredientID(cid: Int64, name: String) -> Bool {
+        do {
+            let item = ingredients.filter(relatedRecipeID == cid && name == ingredientName)
+            try db!.run(item.delete())
+            return true
+        } catch {
+            print("Deleting ingredient failed")
+        }
+        return false
+    }
+    
+    func deleteRecipe(cid: Int64) -> Bool {
+        do {
+            let item = recipes.filter(recipeID == cid)
+            if (cascadeDelete(referencingID: cid)){}
+            try db!.run(item.delete())
+            return true
+        } catch {
+            print("Deleting recipe failed")
+        }
+        return false
+    }
+    
+    func cascadeDelete(referencingID: Int64) -> Bool {
+        do{
+            let query = ingredients.filter(relatedRecipeID == referencingID)
+            let numDeleted = try db!.run(query.delete())
+            print("Deleted \(numDeleted) associated ingredients")
+            return true
+        }  catch {
+            print ("Cadcade deleting failed")
+        }
+        return false
+    }
+    
+    func returnMissingBooleanArray(inputID: Int) -> [Bool] {
+        var groceryNames = [String]()
+        var groceryCounts = [Int64]()
+        var missingIngredient = [Bool]();
+        do
+        {
+            let items = try db!.prepare(foodItems)
+            for item in items{
+                groceryNames.append(item[name]);
+                groceryCounts.append(item[count]);
+            }
+        }
+        catch{
+            print("Nothing was found")
+        }
         
+        do
+        {
+            let ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == Int64(inputID) ));
+            for ingredient in ingredients{
+                var ingredientName = ingredient[self.ingredientName];
+                var ingredientCount = ingredient[self.ingredientCount];
+                var isInIngredientArray = false;
+                for index in 0...groceryCounts.count-1
+                {
+                    if(groceryNames[index] == ingredientName && groceryCounts[index] >= ingredientCount)
+                    {
+                        isInIngredientArray = true;
+                       
+                    }
+                }
+                 missingIngredient.append(isInIngredientArray);
+            }
+        }
+        catch {
+            print("Nothing was found in ingredients");
+        }
+        return missingIngredient;
+        
+    }
+
+    
+    func getSpecificRecipe(inputID: Int64) -> recipe?
+    {
+        var recipeItem  = recipe(id: 0 ,name: "bullshit" ,ingredientList: [])
+        var ingredientList = [ingredientItem]()
+        do{
+            let output = try db!.prepare(self.recipes.filter(recipeID == inputID))
+            var ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == inputID));
+            for item in output
+            {
+                let ingredientQuery = self.ingredients.filter(relatedRecipeID == recipeID)
+                for ingredient in ingredients{
+                    ingredientList.append(ingredientItem(id: ingredient[relatedRecipeID], name: ingredient[ingredientName], count: ingredient[ingredientCount], measurementType: ingredient[ingredientMeasurement]))
+                }
+                
+                
+                recipeItem =  recipe(id: item[recipeID] , name: item[recipeName], ingredientList: ingredientList)
+            }
+            
+            
+        } catch {
+        print ("Retrieving all ingredients failed")
+        }
+        return recipeItem;
+
+    }
+
+    
 }
 
 public func stringToDate(dateInString:String)-> Date{

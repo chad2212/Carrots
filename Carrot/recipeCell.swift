@@ -9,7 +9,7 @@
 import UIKit
 
 class recipeCell: UITableViewCell {
-
+    var id:Int64 = 0;
     @IBOutlet var recipeName: UILabel!
     @IBOutlet var recipeMissingCount: UILabel!
     /*

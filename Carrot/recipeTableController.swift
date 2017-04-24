@@ -32,7 +32,7 @@ class recipeTableController: UIViewController, UITableViewDataSource, UITableVie
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        //Todo: DATABASE LOADING HERE
+        recipeList =  SQLiteDB.instance.getRecipeItems()
         recipeTable.reloadData()
     }
     
@@ -49,7 +49,7 @@ class recipeTableController: UIViewController, UITableViewDataSource, UITableVie
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as! recipeCell
-
+            cell.id = recipeList[indexPath.row].id;
             cell.recipeName?.text = recipeList[indexPath.row].name
             let id = recipeList[indexPath.row].id;
             cell.recipeMissingCount?.text = SQLiteDB.instance.findNumberMissing(inputID: id);
@@ -60,18 +60,39 @@ class recipeTableController: UIViewController, UITableViewDataSource, UITableVie
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            /*
-            let cid = specificList[indexPath.row].id
-            if (SQLiteDB.instance.deleteGroceryItem(cid: cid))
+            
+            let myRecipe = recipeList[indexPath.row]
+            if (SQLiteDB.instance.deleteRecipe(cid: myRecipe.id))
             {
-                specificList = SQLiteDB.instance.whereNameMatches(input: toPass!)!
-                detailedGroceryItemized.reloadData()
+                recipeList =  SQLiteDB.instance.getRecipeItems()
+                recipeTable.reloadData()
             }
- */
+
             
             
         }
     }
+    
+    //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    //    print ("Clicked the indexPath row of \(indexPath.row)")
+   //     self.performSegue(withIdentifier: "showIngredientsSegue", sender: recipeList[indexPath.row])
+   // }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!){
+        
+        if(segue.identifier == "showIngredientsSegue"){
+            print("in between segue \(sender)")
+            let svc = segue.destination as! ingredientsTableController
+            let indexPath = sender as! recipeCell
+            print(indexPath.id)
+            
+            
+            let myRecipe = SQLiteDB.instance.getSpecificRecipe(inputID: indexPath.id)
+            svc.recipeObj = myRecipe
+            
+        }
+    }
+    
     
      func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         print ("Here")

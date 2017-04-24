@@ -50,7 +50,7 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
         
     }
     override func viewDidAppear(_ animated: Bool) {
-        //specificList = SQLiteDB.instance.whereNameMatches(input: toPass!)!
+        ingredientList = SQLiteDB.instance.getIngredients(recipeID: (receivedRecipeObj?.id)!)
         ingredientTable.reloadData()
     }
     
@@ -78,17 +78,16 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        //deleting process
-        //let tempList:[groceryItem] = selectCorrectList(identifier: (toPass?.title)!)
+
         if editingStyle == .delete {
-            /*
-            let cid = specificList[indexPath.row].id
-            if (SQLiteDB.instance.deleteGroceryItem(cid: cid))
+            
+            let myIngredient = ingredientList[indexPath.row]
+            if (SQLiteDB.instance.deleteIngredientID(cid: myIngredient.id, name: myIngredient.name))
             {
-                specificList = SQLiteDB.instance.whereNameMatches(input: toPass!)!
-                detailedGroceryItemized.reloadData()
+                ingredientList = SQLiteDB.instance.getIngredients(recipeID: (receivedRecipeObj?.id)!)
+                ingredientTable.reloadData()
             }
-            */
+            
             
         }
         

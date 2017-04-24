@@ -21,7 +21,9 @@
 		EABC0DF41EADAB1000A29EC5 /* ingredientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DF31EADAB1000A29EC5 /* ingredientModel.swift */; };
 		EABC0DF61EADB74100A29EC5 /* recipeNameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DF51EADB74100A29EC5 /* recipeNameController.swift */; };
 		EABC0DF81EADBA3300A29EC5 /* newIngridientController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DF71EADBA3300A29EC5 /* newIngridientController.swift */; };
-		EABC0DFA1EADBB8B00A29EC5 /* ingridientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DF91EADBB8B00A29EC5 /* ingridientCell.swift */; };
+		EABC0DFA1EADBB8B00A29EC5 /* ingredientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DF91EADBB8B00A29EC5 /* ingredientCell.swift */; };
+		EABC0DFC1EADD1FC00A29EC5 /* ingredientsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DFB1EADD1FC00A29EC5 /* ingredientsTableController.swift */; };
+		EABC0DFE1EADD5FC00A29EC5 /* ingredientTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC0DFD1EADD5FC00A29EC5 /* ingredientTableCell.swift */; };
 		EADA98C61E9D21BE0054E084 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C51E9D21BE0054E084 /* AppDelegate.swift */; };
 		EADA98C81E9D21BE0054E084 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C71E9D21BE0054E084 /* FirstViewController.swift */; };
 		EADA98CA1E9D21BE0054E084 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADA98C91E9D21BE0054E084 /* SecondViewController.swift */; };
@@ -140,7 +142,9 @@
 		EABC0DF31EADAB1000A29EC5 /* ingredientModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientModel.swift; sourceTree = "<group>"; };
 		EABC0DF51EADB74100A29EC5 /* recipeNameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeNameController.swift; sourceTree = "<group>"; };
 		EABC0DF71EADBA3300A29EC5 /* newIngridientController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newIngridientController.swift; sourceTree = "<group>"; };
-		EABC0DF91EADBB8B00A29EC5 /* ingridientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingridientCell.swift; sourceTree = "<group>"; };
+		EABC0DF91EADBB8B00A29EC5 /* ingredientCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientCell.swift; sourceTree = "<group>"; };
+		EABC0DFB1EADD1FC00A29EC5 /* ingredientsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientsTableController.swift; sourceTree = "<group>"; };
+		EABC0DFD1EADD5FC00A29EC5 /* ingredientTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ingredientTableCell.swift; sourceTree = "<group>"; };
 		EADA98C21E9D21BE0054E084 /* Carrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADA98C51E9D21BE0054E084 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EADA98C71E9D21BE0054E084 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -260,7 +264,8 @@
 		EAEEADED1E9D89490096A260 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EABC0DF91EADBB8B00A29EC5 /* ingridientCell.swift */,
+				EABC0DF91EADBB8B00A29EC5 /* ingredientCell.swift */,
+				EABC0DFD1EADD5FC00A29EC5 /* ingredientTableCell.swift */,
 				EABC0DE91EAD7F2700A29EC5 /* expiringTableCell.swift */,
 				EABC0DE71EAD503100A29EC5 /* detailedGroceryTableCell.swift */,
 				EABC0DE31EAD012E00A29EC5 /* SQLiteDB.swift */,
@@ -292,6 +297,7 @@
 				EABC0DE51EAD468700A29EC5 /* DetailedGroceryController.swift */,
 				EADA98C71E9D21BE0054E084 /* FirstViewController.swift */,
 				EAEEADE51E9D43510096A260 /* GroceryController.swift */,
+				EABC0DFB1EADD1FC00A29EC5 /* ingredientsTableController.swift */,
 				EAEEADEB1E9D873A0096A260 /* newGroceryItemController.swift */,
 				EADA98C91E9D21BE0054E084 /* SecondViewController.swift */,
 				EABC0DEF1EADA10900A29EC5 /* recipeTableController.swift */,
@@ -497,11 +503,13 @@
 				EADA98CA1E9D21BE0054E084 /* SecondViewController.swift in Sources */,
 				EAEEADE61E9D43510096A260 /* GroceryController.swift in Sources */,
 				EAEEADEC1E9D873A0096A260 /* newGroceryItemController.swift in Sources */,
-				EABC0DFA1EADBB8B00A29EC5 /* ingridientCell.swift in Sources */,
+				EABC0DFA1EADBB8B00A29EC5 /* ingredientCell.swift in Sources */,
+				EABC0DFC1EADD1FC00A29EC5 /* ingredientsTableController.swift in Sources */,
 				EADA98C61E9D21BE0054E084 /* AppDelegate.swift in Sources */,
 				EABC0DE21EACF21700A29EC5 /* DLRadioButton.m in Sources */,
 				EAEEADF11E9D9FA10096A260 /* groceryTableCell.swift in Sources */,
 				EABC0DEC1EAD7FB200A29EC5 /* ExpiringViewController.swift in Sources */,
+				EABC0DFE1EADD5FC00A29EC5 /* ingredientTableCell.swift in Sources */,
 				EABC0DF81EADBA3300A29EC5 /* newIngridientController.swift in Sources */,
 				EABC0DEA1EAD7F2700A29EC5 /* expiringTableCell.swift in Sources */,
 				EABC0DF21EADAB0900A29EC5 /* recipeModel.swift in Sources */,

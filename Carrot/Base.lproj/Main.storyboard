@@ -307,15 +307,6 @@
                                     <segment title="O"/>
                                 </segments>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5z-LW-0fd">
-                                <rect key="frame" x="12" y="72" width="162" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Go back to List"/>
-                                <connections>
-                                    <segue destination="Gc5-eX-Fec" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="QYJ-WJ-Wk8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -390,17 +381,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Irf-DN-Ypi">
-                                                <rect key="frame" x="0.0" y="0.0" width="72.5" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fZo-5d-zrX">
-                                                <rect key="frame" x="72.5" y="0.0" width="270.5" height="34"/>
-                                                <state key="normal" image="plus">
-                                                    <attributedString key="attributedTitle"/>
-                                                </state>
-                                            </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="N0N-ik-um4" userLabel="Table Info">
@@ -675,9 +660,9 @@
                                                     </subviews>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="ingredientCount" destination="Nwi-sf-k9R" id="INN-5v-T0H"/>
-                                                    <outlet property="ingredientMeasurementType" destination="NiS-Zd-PzK" id="9aF-On-8RB"/>
-                                                    <outlet property="ingredientName" destination="PSM-AT-F3w" id="Bxn-wI-9Il"/>
+                                                    <outlet property="ingredientCount" destination="Nwi-sf-k9R" id="0WP-c8-Eo3"/>
+                                                    <outlet property="ingredientMeasurementType" destination="NiS-Zd-PzK" id="cF8-ZK-gQx"/>
+                                                    <outlet property="ingredientName" destination="PSM-AT-F3w" id="O6B-pN-mjd"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -725,27 +710,18 @@
                                 <rect key="frame" x="16" y="64" width="343" height="554"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkF-8w-fr5">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="37"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiring Foods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-ry-n6f">
-                                                <rect key="frame" x="0.0" y="0.0" width="196" height="37"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idL-QO-poO">
-                                                <rect key="frame" x="196" y="0.0" width="147" height="37"/>
-                                                <state key="normal" image="plus">
-                                                    <attributedString key="attributedTitle"/>
-                                                </state>
-                                            </button>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="idL-QO-poO" secondAttribute="trailing" id="OHh-hA-e7E"/>
-                                        </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="XwI-ze-xtm" userLabel="Table Info">
-                                        <rect key="frame" x="0.0" y="37" width="343" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="36" width="343" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pur. Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRB-il-Mpf">
                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="20.5"/>
@@ -774,7 +750,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="egx-32-dpd">
-                                        <rect key="frame" x="0.0" y="57.5" width="343" height="496.5"/>
+                                        <rect key="frame" x="0.0" y="56.5" width="343" height="497.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="expiringTableCell" id="hF4-Oe-mRe" customClass="expiringTableCell" customModule="Carrot" customModuleProvider="target">
@@ -931,6 +907,7 @@
                                         <connections>
                                             <outlet property="recipeMissingCount" destination="NXI-RU-VCL" id="AwG-kH-geZ"/>
                                             <outlet property="recipeName" destination="WZD-eF-OFt" id="pJ9-0r-GQO"/>
+                                            <segue destination="Z8h-UJ-pat" kind="show" identifier="showIngredientsSegue" id="oAQ-gL-cRL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -953,7 +930,101 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ndP-8Y-EiF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2812" y="914"/>
+            <point key="canvasLocation" x="2794" y="910"/>
+        </scene>
+        <!--Ingredients Table Controller-->
+        <scene sceneID="7wf-7P-fzn">
+            <objects>
+                <viewController id="Z8h-UJ-pat" customClass="ingredientsTableController" customModule="Carrot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZP4-6g-OrG"/>
+                        <viewControllerLayoutGuide type="bottom" id="jiE-Pj-g2F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X1F-zf-dMa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utT-YP-krM">
+                                <rect key="frame" x="16" y="64" width="343" height="36"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xv7-Pa-Q6o">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n95-fc-lZ7" userLabel="Recipe Table">
+                                <rect key="frame" x="0.0" y="100" width="375" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="VIO-Hl-dw4"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newIngridientCell" id="wcu-Li-OdY" customClass="newIngredientCell" customModule="Carrot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wcu-Li-OdY" id="fod-hS-xMe">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVP-Ch-5z8" userLabel="name">
+                                                    <rect key="frame" x="8" y="11" width="48" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2s-GS-gvk" userLabel="measurementType">
+                                                    <rect key="frame" x="210" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFa-so-g9u" userLabel="count">
+                                                    <rect key="frame" x="100" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hN3-1h-YEC">
+                                                    <rect key="frame" x="314" y="0.0" width="43" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkBoxImage" destination="hN3-1h-YEC" id="ZSj-NF-czy"/>
+                                            <outlet property="ingredientCount" destination="QFa-so-g9u" id="QRJ-cl-KVQ"/>
+                                            <outlet property="ingredientMeasurementType" destination="r2s-GS-gvk" id="pSU-xI-wpn"/>
+                                            <outlet property="ingredientName" destination="bVP-Ch-5z8" id="Q3i-qK-YRY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jiE-Pj-g2F" firstAttribute="top" secondItem="n95-fc-lZ7" secondAttribute="bottom" constant="-1" id="5g8-5C-mFx"/>
+                            <constraint firstItem="n95-fc-lZ7" firstAttribute="top" secondItem="utT-YP-krM" secondAttribute="bottom" id="ZzD-nC-dfu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="utT-YP-krM" secondAttribute="trailing" id="shP-9Z-dJQ"/>
+                            <constraint firstItem="utT-YP-krM" firstAttribute="top" secondItem="ZP4-6g-OrG" secondAttribute="bottom" id="tES-DY-j5r"/>
+                            <constraint firstItem="n95-fc-lZ7" firstAttribute="leading" secondItem="X1F-zf-dMa" secondAttribute="leading" id="yF2-CA-odn"/>
+                            <constraint firstItem="utT-YP-krM" firstAttribute="leading" secondItem="X1F-zf-dMa" secondAttribute="leadingMargin" id="ykM-d0-Lsa"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Fi-sz-jFX"/>
+                    <connections>
+                        <outlet property="ingredientTable" destination="n95-fc-lZ7" id="bQB-Ye-7yH"/>
+                        <outlet property="recipeTitle" destination="Xv7-Pa-Q6o" id="gLG-uQ-hER"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dxh-TC-xaT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2792.8000000000002" y="1611.5442278860571"/>
         </scene>
     </scenes>
     <resources>
@@ -963,6 +1034,6 @@
         <image name="plus" width="37" height="37"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6nF-Fs-uw5"/>
+        <segue reference="e1k-cz-EXP"/>
     </inferredMetricsTieBreakers>
 </document>

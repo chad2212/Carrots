@@ -246,7 +246,7 @@ public class SQLiteDB {
                 for groceryItem in relevantIngredients
                 {
                     ingredientList.append(ingredientItem(
-                        id: groceryItem[recipeID],
+                        id: groceryItem[relatedRecipeID],
                         name: groceryItem[ingredientName],
                         count: groceryItem[ingredientCount],
                         measurementType: groceryItem[ingredientMeasurement]
@@ -283,7 +283,8 @@ public class SQLiteDB {
     func findNumberMissing(inputID: Int64) -> String {
         var groceryNames = [String]()
         var groceryCounts = [Int]()
-        var missingIngredientCount = 0 ;
+        var presentIngredientCounter = 0 ;
+        var totalIngredients = 0 ;
         do
         {
             let items = try db!.prepare(foodItems)
@@ -303,11 +304,16 @@ public class SQLiteDB {
             for ingredient in ingredients{
                 let ingredientName = ingredient[self.ingredientName];
                 let ingredientCount = ingredient[self.ingredientCount];
-                for index in 0...groceryCounts.count
+                totalIngredients += 1;
+                if(groceryCounts.count > 0)
                 {
-                    if(groceryNames[index] == ingredientName && Int64(groceryCounts[index]) >= ingredientCount)
+                    for index in 0...groceryCounts.count-1
                     {
-                        missingIngredientCount += 1;
+                    
+                        if(groceryNames[index] == ingredientName && Int64(groceryCounts[index]) >=  ingredientCount)
+                        {
+                            presentIngredientCounter += 1;
+                        }
                     }
                 }
             }
@@ -315,7 +321,8 @@ public class SQLiteDB {
         catch {
             print("Nothing was found in ingrdeints");
         }
-        return String(missingIngredientCount);
+        let missingIngredientCounter = totalIngredients - presentIngredientCounter
+        return String(missingIngredientCounter);
         
     }
 

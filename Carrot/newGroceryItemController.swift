@@ -68,7 +68,7 @@
             }
             else
             {
-                foodType = "Other";
+                foodType = "Others";
             }
             
             var location = "";

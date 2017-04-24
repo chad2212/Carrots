@@ -73,7 +73,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             let cell = tableView.dequeueReusableCell(withIdentifier: "groceryTableCell", for: indexPath) as! groceryTableCell
             let tempList:[groceryItem] = selectCorrectList(identifier: (toPass!))
             cell.itemName?.text = tempList[indexPath.row].name
-            cell.itemNumber?.text = String(tempList[indexPath.row].count)
+            cell.itemNumber?.text = String(tempList[indexPath.row].count) + tempList[indexPath.row].units
             cell.itemLocation?.text = String(tempList[indexPath.row].storedLocation)
             return cell
     }

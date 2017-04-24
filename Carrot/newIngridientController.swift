@@ -27,7 +27,7 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
         let countInput = self.ingredientCountField.text
         let measurementInput = self.ingredientMeasurementTypeField.text
         
-        SQLiteDB.instance.addIngredient(addRecipeID: (receivedRecipeObj?.id)!, addIngredientName: nameInput!, addIngredientCount: Int64(countInput!)!, addMeasurementType: measurementInput!)
+        SQLiteDB.instance.addIngredient(addRecipeID: (receivedRecipeObj?.id)!, addIngredientName: nameInput!, addIngredientCount: Double(countInput!)!, addMeasurementType: measurementInput!)
         ingredientList = SQLiteDB.instance.getIngredients(recipeID: (receivedRecipeObj?.id)!)
         ingredientTable.reloadData()
         ingredientNameField.text = ""

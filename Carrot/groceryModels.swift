@@ -17,13 +17,14 @@ struct groceryType{
 struct groceryItem{
     var id : Int64
     var name : String
-    var count : Int64
+    var count : Double
     var storedLocation : String
     var purchasedDate : Date
     var expiringDate : Date
     var foodType : String
+    var units : String
     
-    func addItem(name:String, count:Int64)
+    func addItem(name:String, count:Double)
     {
         var counter : Int = 0
         for item in localGroceryList

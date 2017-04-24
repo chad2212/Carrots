@@ -16,7 +16,7 @@ public class SQLiteDB {
     private let foodItems = Table("foodItems")
     private let id = Expression<Int64>("id")
     private let name = Expression<String>("name")
-    private let count = Expression<Int64>("count")
+    private let count = Expression<Double>("count")
     private let storedLocation = Expression<String>("storedLocation")
     private let purchasedDate = Expression<String>("purchasedDate")
     private let expiringDate = Expression<String>("expiringDate")
@@ -36,7 +36,7 @@ public class SQLiteDB {
     private let ingredients = Table("ingredients");
     private let relatedRecipeID = Expression<Int64>("relatedrecipeID");
     private let ingredientName = Expression<String>("ingredientName");
-    private let ingredientCount = Expression<Int64>("ingredientCount");
+    private let ingredientCount = Expression<Double>("ingredientCount");
     private let ingredientMeasurement = Expression<String>("ingredientMeasurement");
     
 
@@ -91,7 +91,7 @@ public class SQLiteDB {
             print("Unable to create table")
         }
     }
-    func addGroceryItem(addName: String, addCount: Int64, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String, addMeasurementType: String) -> Int64? {
+    func addGroceryItem(addName: String, addCount: Double, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String, addMeasurementType: String) -> Int64? {
         do {
             let insert = foodItems.insert(
                 name <- addName,
@@ -124,7 +124,7 @@ public class SQLiteDB {
         }
     }
     
-    func addIngredient(addRecipeID: Int64, addIngredientName: String, addIngredientCount: Int64, addMeasurementType:String) -> Int64?{
+    func addIngredient(addRecipeID: Int64, addIngredientName: String, addIngredientCount: Double, addMeasurementType:String) -> Int64?{
         do {
             let insert = ingredients.insert(
                 relatedRecipeID <- addRecipeID,
@@ -151,7 +151,8 @@ public class SQLiteDB {
                         storedLocation: item[storedLocation],
                         purchasedDate: stringToDate(dateInString: item[purchasedDate]),
                         expiringDate: stringToDate(dateInString: item[expiringDate]),
-                        foodType:item[foodType]
+                        foodType:item[foodType],
+                        units: item[measurementType]
                     ))
                 }
             } catch {
@@ -193,17 +194,6 @@ public class SQLiteDB {
             return false
     }
     
-    func incrementGroceryItem(cid:Int64) -> Bool {
-        let item = foodItems.filter(id == cid)
-        do{
-            if try db!.run(item.update(count++)) > 0{
-                return true
-            }
-        } catch {
-            print ("Counter Increment failed for ")
-        }
-        return false
-    }
     
     func whereNameMatches(input:String) -> [groceryItem]? {
         var groceryItems = [groceryItem]()
@@ -212,7 +202,7 @@ public class SQLiteDB {
         {
             let items = try db!.prepare(foodItems.filter(name == input))
             for item in items{
-                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType]));
+                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType], units : item[measurementType]));
             }
         }
         catch{
@@ -232,7 +222,7 @@ public class SQLiteDB {
         {
             let items = try db!.prepare(foodItems.order(expiringDate.asc))
             for item in items{
-                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType]));
+                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType], units :item[measurementType]));
             }
         }
         catch {
@@ -288,7 +278,7 @@ public class SQLiteDB {
     //RETURNS THE NUMBER OF MISSING INGREDIENTS FOR A SPECIFIC RECIPE
     func findNumberMissing(inputID: Int64) -> String {
         var groceryNames = [String]()
-        var groceryCounts = [Int]()
+        var groceryCounts = [Double]()
         var presentIngredientCounter = 0 ;
         var totalIngredients = 0 ;
         do
@@ -296,7 +286,7 @@ public class SQLiteDB {
             let items = try db!.prepare(foodItems)
             for item in items{
                 groceryNames.append(item[name]);
-                groceryCounts.append(Int(item[count]));
+                groceryCounts.append(item[count]);
             }
             
         }
@@ -312,7 +302,7 @@ public class SQLiteDB {
                 let ingredientCount = ingredient[self.ingredientCount];
                 totalIngredients += 1;
                 
-                var totalGroceryCounter = 0;
+                var totalGroceryCounter = 0.0;
                 if(groceryCounts.count > 0)
                 {
                     for index in 0...groceryCounts.count-1
@@ -324,7 +314,7 @@ public class SQLiteDB {
                            
                         }
                     }
-                    if(ingredientCount <= Int64(totalGroceryCounter))
+                    if(ingredientCount <= totalGroceryCounter)
                     {
                          presentIngredientCounter += 1;
                     }
@@ -379,7 +369,7 @@ public class SQLiteDB {
     //RETURNS AN ARRAY OF BOOLEANS INDICATING WHETHER AN INDIVIDUAL HAS ENOUG OF A CERTAIN INGREDIENT.
     func returnMissingBooleanArray(inputID: Int) -> [Bool] {
         var groceryNames = [String]()
-        var groceryCounts = [Int64]()
+        var groceryCounts = [Double]()
         var missingIngredient = [Bool]();
         do
         {
@@ -400,7 +390,7 @@ public class SQLiteDB {
                 let ingredientName = ingredient[self.ingredientName];
                 let ingredientCount = ingredient[self.ingredientCount];
                 var isInIngredientArray = false;
-                var totalGroceryCount:Int64 = 0;
+                var totalGroceryCount = 0.0;
                 if(groceryCounts.count>0)
                 {
                     for index in 0...groceryCounts.count-1
@@ -413,7 +403,7 @@ public class SQLiteDB {
                     }
                 
                 }
-                if(ingredientCount <= Int64(totalGroceryCount))
+                if(ingredientCount <= totalGroceryCount)
                 {
                     isInIngredientArray = true;
                 }

@@ -68,7 +68,7 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
             cell.itemPurchasedDate?.text = dateToString(stringInDate: specificList[indexPath.row].purchasedDate)
             cell.itemLocation?.text = specificList[indexPath.row].storedLocation
             cell.itemExpiringDate?.text = dateToString(stringInDate: specificList[indexPath.row].expiringDate)
-            cell.itemCount?.text = String(specificList[indexPath.row].count)
+            cell.itemCount?.text = String(specificList[indexPath.row].count) +  " " + specificList[indexPath.row].units
             
             return cell
     }

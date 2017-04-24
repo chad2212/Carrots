@@ -11,6 +11,6 @@ import Foundation
 struct ingredientItem{
     var id : Int64
     var name : String
-    var count : Int64
+    var count : Double
     var measurementType : String    
 }

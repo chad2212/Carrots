@@ -48,7 +48,7 @@
         @IBAction func createFoodItem(_ sender: UIButton) {
             let measurementTextField = self.measurementTextField.text!
             let foodName = foodNameField.text!
-            let count = Int64(countNumber.text!)
+            let count = Double(countNumber.text!)
             
             var foodType = "";
             if(foodTypeChooser.selectedSegmentIndex == 0)
@@ -71,7 +71,7 @@
             var location = "";
             if(foodLocationChooser.selectedSegmentIndex == 0)
             {
-                location = "Refridgerator";
+                location = "Refrigerator";
             }
             else if(foodLocationChooser.selectedSegmentIndex == 1)
             {

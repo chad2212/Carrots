@@ -770,21 +770,21 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSM-AT-F3w" userLabel="ingridientName">
-                                                            <rect key="frame" x="24" y="11" width="99" height="21"/>
+                                                            <rect key="frame" x="24" y="11" width="115" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Zd-PzK" userLabel="ingridientMeasurementType">
-                                                            <rect key="frame" x="310" y="11" width="42" height="21"/>
+                                                            <rect key="frame" x="247" y="11" width="120" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwi-sf-k9R" userLabel="ingridientCount">
-                                                            <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                                            <rect key="frame" x="147" y="11" width="68" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -960,7 +960,7 @@
                             <constraint firstItem="jG5-Cn-AH8" firstAttribute="top" secondItem="v1c-Fl-Pga" secondAttribute="bottom" id="jCm-c5-r3D"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="T04-tX-NRX"/>
+                    <navigationItem key="navigationItem" title="Expiration View" id="T04-tX-NRX"/>
                     <connections>
                         <outlet property="expiringTable" destination="egx-32-dpd" id="0Jz-nG-G7x"/>
                     </connections>
@@ -986,7 +986,7 @@
             </objects>
             <point key="canvasLocation" x="992" y="910"/>
         </scene>
-        <!--Recipe Table Controller-->
+        <!--Recipe View-->
         <scene sceneID="pYw-Sz-2by">
             <objects>
                 <viewController id="ngO-Ml-4kV" customClass="recipeTableController" customModule="Carrot" customModuleProvider="target" sceneMemberID="viewController">
@@ -1064,7 +1064,7 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXI-RU-VCL">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXI-RU-VCL">
                                                                     <rect key="frame" x="163.5" y="0.0" width="163.5" height="27.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
@@ -1108,7 +1108,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="9w7-Yr-v3h" secondAttribute="leading" id="duI-Op-KZN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="IIZ-za-yhj"/>
+                    <navigationItem key="navigationItem" title="Recipe View" id="IIZ-za-yhj"/>
                     <connections>
                         <outlet property="recipeTable" destination="RlI-Au-NHC" id="nsA-up-bNI"/>
                     </connections>
@@ -1275,7 +1275,7 @@
         <image name="recipeBook" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="e1k-cz-EXP"/>
-        <segue reference="DJo-Gb-WAY"/>
+        <segue reference="YN6-lD-Khr"/>
+        <segue reference="6nF-Fs-uw5"/>
     </inferredMetricsTieBreakers>
 </document>

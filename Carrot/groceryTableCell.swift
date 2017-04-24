@@ -13,4 +13,5 @@ class groceryTableCell: UITableViewCell {
     @IBOutlet var itemName: UILabel!
     @IBOutlet var itemNumber: UILabel!
     
+    @IBOutlet var itemLocation: UILabel!
 }

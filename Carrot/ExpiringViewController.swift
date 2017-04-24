@@ -45,13 +45,10 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: "expiringTableCell", for: indexPath) as! expiringTableCell
-            
-            let userCalendar = Calendar.current
-            
+                        
             cell.itemName?.text = expiringFoodList[indexPath.row].name
-            cell.itemCount?.text = String(expiringFoodList[indexPath.row].count)
-            let daysInBetween = userCalendar.dateComponents([.day], from: Date(), to: expiringFoodList[indexPath.row].expiringDate)
-            cell.itemDaysLeft?.text = String(daysInBetween.day!)
+            cell.itemCount?.text = String(expiringFoodList[indexPath.row].storedLocation)
+           
             
             return cell
     }

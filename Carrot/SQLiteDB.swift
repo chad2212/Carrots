@@ -21,6 +21,7 @@ public class SQLiteDB {
     private let purchasedDate = Expression<String>("purchasedDate")
     private let expiringDate = Expression<String>("expiringDate")
     private let foodType = Expression<String>("foodType")
+    private let measurementType = Expression<String>("measurementType")
     
     
     
@@ -65,6 +66,7 @@ public class SQLiteDB {
                 t.column(purchasedDate)
                 t.column(expiringDate)
                 t.column(foodType)
+                t.column(measurementType)
             })
         } catch {
             print("Unable to create table")
@@ -88,7 +90,7 @@ public class SQLiteDB {
             print("Unable to create table")
         }
     }
-    func addGroceryItem(addName: String, addCount: Int64, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String) -> Int64? {
+    func addGroceryItem(addName: String, addCount: Int64, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String, addMeasurementType: String) -> Int64? {
         do {
             let insert = foodItems.insert(
                 name <- addName,
@@ -96,7 +98,8 @@ public class SQLiteDB {
                 storedLocation <- addStoredLocation,
                 purchasedDate <- addPurchasedDate,
                 expiringDate <- addExpiringDate,
-                foodType <- addFoodType
+                foodType <- addFoodType,
+                measurementType <- addMeasurementType
                 )
             let id = try db!.run(insert)
             print("Grocery Item successfully added")
@@ -380,8 +383,8 @@ public class SQLiteDB {
         {
             let ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == Int64(inputID) ));
             for ingredient in ingredients{
-                var ingredientName = ingredient[self.ingredientName];
-                var ingredientCount = ingredient[self.ingredientCount];
+                let ingredientName = ingredient[self.ingredientName];
+                let ingredientCount = ingredient[self.ingredientCount];
                 var isInIngredientArray = false;
                 for index in 0...groceryCounts.count-1
                 {
@@ -408,10 +411,9 @@ public class SQLiteDB {
         var ingredientList = [ingredientItem]()
         do{
             let output = try db!.prepare(self.recipes.filter(recipeID == inputID))
-            var ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == inputID));
+            let ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == inputID));
             for item in output
             {
-                let ingredientQuery = self.ingredients.filter(relatedRecipeID == recipeID)
                 for ingredient in ingredients{
                     ingredientList.append(ingredientItem(id: ingredient[relatedRecipeID], name: ingredient[ingredientName], count: ingredient[ingredientCount], measurementType: ingredient[ingredientMeasurement]))
                 }

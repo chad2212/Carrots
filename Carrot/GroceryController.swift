@@ -15,7 +15,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBOutlet var groceryItemized: UITableView!
     @IBOutlet var groceryType: UILabel!
-    
+
     var passingIndexPath:IndexPath? = nil
     
     //4 separate lists
@@ -74,7 +74,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             let tempList:[groceryItem] = selectCorrectList(identifier: (toPass!))
             cell.itemName?.text = tempList[indexPath.row].name
             cell.itemNumber?.text = String(tempList[indexPath.row].count)
-
+            cell.itemLocation?.text = String(tempList[indexPath.row].storedLocation)
             return cell
     }
     

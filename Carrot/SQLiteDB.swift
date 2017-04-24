@@ -140,11 +140,23 @@ public class SQLiteDB {
     }
     
     func whereNameMatches(input:String) -> [groceryItem]? {
-        let returnArr:[groceryItem]? = nil
-        let allMatchedItem = foodItems.where(name.lowercaseString == input)
-        print ("\n\(allMatchedItem)\n")
+        var groceryItems = [groceryItem]()
         
-        return returnArr
+        do
+        {
+            let items = try db!.prepare(foodItems.filter(name == input))
+            for item in items{
+                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType]));
+            }
+        }
+        catch{
+            print("Nothing was found")
+        }
+            
+        
+        
+        
+        return groceryItems
     }
         
 }

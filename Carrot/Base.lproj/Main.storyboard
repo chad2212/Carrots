@@ -19,9 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="Vun-fl-dcH" kind="relationship" relationship="rootViewController" id="ccz-MX-Et6"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0YH-eY-wFR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,25 +86,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42f-Sh-feG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2052" y="-566.26686656671666"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="bGY-gO-3ZG">
-            <objects>
-                <viewController id="Vun-fl-dcH" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9bX-NT-dCy"/>
-                        <viewControllerLayoutGuide type="bottom" id="GoJ-p5-JDq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zau-PC-scW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ECA-Yi-3t2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xlf-hG-Ygg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2052" y="161"/>
         </scene>
         <!--Grocery Controller-->
         <scene sceneID="FEd-vb-YKg">
@@ -217,15 +195,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5z-LW-0fd">
-                                <rect key="frame" x="0.0" y="20" width="162" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Go back to List"/>
-                                <connections>
-                                    <segue destination="Gc5-eX-Fec" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="QYJ-WJ-Wk8"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpX-Cb-dRM">
                                 <rect key="frame" x="218" y="141" width="126" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -337,6 +306,15 @@
                                     <segment title="O"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5z-LW-0fd">
+                                <rect key="frame" x="12" y="72" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Go back to List"/>
+                                <connections>
+                                    <segue destination="Gc5-eX-Fec" kind="unwind" identifier="unwindToList" unwindAction="unwindToListWithSegue:" id="QYJ-WJ-Wk8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -529,10 +507,10 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="itemCount" destination="tbR-yY-LnV" id="eij-Ag-giy"/>
-                                                    <outlet property="itemExpiringDate" destination="Cdk-OI-Ufe" id="gke-bD-x7C"/>
-                                                    <outlet property="itemLocation" destination="i9Y-y9-Ljp" id="Ot0-b8-6a2"/>
-                                                    <outlet property="itemPurchasedDate" destination="LRI-SZ-m2I" id="wkr-c8-KJg"/>
+                                                    <outlet property="itemCount" destination="Cdk-OI-Ufe" id="Ecx-Kd-hwW"/>
+                                                    <outlet property="itemExpiringDate" destination="LRI-SZ-m2I" id="HVN-hW-7ac"/>
+                                                    <outlet property="itemLocation" destination="tbR-yY-LnV" id="oSx-jJ-Jzt"/>
+                                                    <outlet property="itemPurchasedDate" destination="i9Y-y9-Ljp" id="1PN-lR-Hd9"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -547,9 +525,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dZE-VB-rMD" firstAttribute="top" secondItem="03G-KD-W4l" secondAttribute="bottom" id="EhU-VW-zaD"/>
                             <constraint firstItem="dZE-VB-rMD" firstAttribute="width" secondItem="M7u-40-yFE" secondAttribute="width" id="Mi2-l6-drS"/>
-                            <constraint firstItem="lWI-oN-W95" firstAttribute="top" secondItem="dZE-VB-rMD" secondAttribute="bottom" id="OTu-Da-33Y"/>
+                            <constraint firstItem="dZE-VB-rMD" firstAttribute="top" secondItem="03G-KD-W4l" secondAttribute="bottom" id="VMX-Rj-hgU"/>
+                            <constraint firstItem="dZE-VB-rMD" firstAttribute="top" secondItem="03G-KD-W4l" secondAttribute="bottom" id="ffG-Tz-gHx"/>
+                            <constraint firstItem="lWI-oN-W95" firstAttribute="top" secondItem="dZE-VB-rMD" secondAttribute="bottom" id="qHT-of-pAu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Zal-Q8-VZh"/>
@@ -561,6 +540,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rYy-XB-MrA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3733.5" y="160.5"/>
+        </scene>
+        <!--Grocery Controller-->
+        <scene sceneID="8fG-NU-Mqu">
+            <objects>
+                <viewController id="1ON-HL-2DI" customClass="GroceryController" customModule="Carrot" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y66-Cf-KDZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="jG5-Cn-AH8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y3X-M0-mNJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkF-8w-fr5">
+                                <rect key="frame" x="16" y="20" width="343" height="37"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiring Foods" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3JL-ry-n6f">
+                                        <rect key="frame" x="0.0" y="0.0" width="196" height="37"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idL-QO-poO">
+                                        <rect key="frame" x="196" y="0.0" width="147" height="37"/>
+                                        <state key="normal" image="plus">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="idL-QO-poO" secondAttribute="trailing" id="OHh-hA-e7E"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="egx-32-dpd">
+                                <rect key="frame" x="0.0" y="57" width="375" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="mrM-Mi-oja"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="groceryTableCell" id="hF4-Oe-mRe" customClass="groceryTableCell" customModule="Carrot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hF4-Oe-mRe" id="L9y-YV-RCE">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6F1-sl-1SP">
+                                                    <rect key="frame" x="8" y="11" width="175" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7s8-er-kpQ">
+                                                    <rect key="frame" x="166" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuS-1V-ygH">
+                                                    <rect key="frame" x="325" y="11" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="egx-32-dpd" firstAttribute="top" secondItem="xkF-8w-fr5" secondAttribute="bottom" id="0vg-qQ-hwV"/>
+                            <constraint firstItem="xkF-8w-fr5" firstAttribute="top" secondItem="y66-Cf-KDZ" secondAttribute="bottom" id="AF6-Ix-Swd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xkF-8w-fr5" secondAttribute="trailing" id="BAa-Gy-gTA"/>
+                            <constraint firstItem="jG5-Cn-AH8" firstAttribute="top" secondItem="egx-32-dpd" secondAttribute="bottom" constant="-1" id="aTo-Gd-V8k"/>
+                            <constraint firstItem="xkF-8w-fr5" firstAttribute="leading" secondItem="Y3X-M0-mNJ" secondAttribute="leadingMargin" id="d55-U9-09n"/>
+                            <constraint firstItem="egx-32-dpd" firstAttribute="leading" secondItem="Y3X-M0-mNJ" secondAttribute="leading" id="wI8-g4-dLm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T04-tX-NRX"/>
+                    <connections>
+                        <outlet property="groceryItemized" destination="egx-32-dpd" id="vMi-RG-PYZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="StK-pf-c8w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2052" y="161"/>
         </scene>
     </scenes>
     <resources>

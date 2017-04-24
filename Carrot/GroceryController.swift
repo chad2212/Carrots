@@ -166,6 +166,9 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
         if(segue.identifier == "detailedSegue"){
             let svc = segue.destination as! DetailedGroceryController
             let indexPath = sender as! IndexPath
+            let queryString = selectCorrectList(identifier: (toPass!))[(indexPath.row)].name
+            let specificList:[groceryItem] = (SQLiteDB.instance.whereNameMatches(input: queryString))!
+            svc.specificList = specificList;
             svc.toPass = selectCorrectList(identifier: (toPass!))[(indexPath.row)].name
 
         }

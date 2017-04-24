@@ -21,6 +21,7 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
     }
     
     var toPass: String?
+    var specificList:[groceryItem] = []
     
     override func viewDidLoad() {
         
@@ -33,9 +34,14 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         detailedGroceryItemized.dataSource = self
         detailedGroceryItemized.reloadData()
         
-        let specificList:[groceryItem]? = SQLiteDB.instance.whereNameMatches(input: toPass!)
-        print (specificList ?? 1)
         
+        
+        for item in specificList
+        {
+            print("in the table view")
+            print(specificList)
+            print (item.name)
+        }
         //Getting data back from database
         
     }
@@ -50,17 +56,19 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        print (specificList)
+
+        return specificList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
         UITableViewCell{
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailedGroceryTableCell", for: indexPath) as! detailedGroceryTableCell
             
-            cell.itemPurchasedDate?.text = "lol"
-            cell.itemLocation?.text = "lol"
-            cell.itemExpiringDate?.text = "lol"
-            cell.itemCount?.text = "lol"
+            cell.itemPurchasedDate?.text = dateToString(stringInDate: specificList[indexPath.row].purchasedDate)
+            cell.itemLocation?.text = specificList[indexPath.row].storedLocation
+            cell.itemExpiringDate?.text = dateToString(stringInDate: specificList[indexPath.row].expiringDate)
+            cell.itemCount?.text = String(specificList[indexPath.row].count)
             
             return cell
     }

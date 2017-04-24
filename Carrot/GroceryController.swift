@@ -10,7 +10,8 @@ import UIKit
 import SQLite
 
 
-
+// THIS IS THE GROCERY CONTROLLER AND SHOULD DISPLAY ALL THE GROCERY ITEMS FOR THE 
+//APPROPRIATE CATEGORY
 class GroceryController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet var groceryItemized: UITableView!

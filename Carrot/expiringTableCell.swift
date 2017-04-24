@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 class expiringTableCell: UITableViewCell {
-
+    //expiration table cells
     @IBOutlet weak var itemName: UILabel!
- 
     @IBOutlet weak var locationName: UILabel!
     @IBOutlet weak var expDate: UILabel!
     

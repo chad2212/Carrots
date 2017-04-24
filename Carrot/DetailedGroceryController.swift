@@ -16,9 +16,6 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet var detailedGroceryItemized: UITableView!
     @IBOutlet var foodType: UILabel!
     
-    @IBAction func unwindToList(segue:UIStoryboardSegue) {
-        detailedGroceryItemized.reloadData()
-    }
     
     var toPass: String?
     var specificList:[groceryItem] = []
@@ -34,13 +31,6 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         detailedGroceryItemized.reloadData()
         
         
-        
-        for item in specificList
-        {
-            print("in the table view")
-            print(specificList)
-            print (item.name)
-        }
         //Getting data back from database
         
     }
@@ -54,10 +44,8 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print (specificList)
-
         return specificList.count
     }
     

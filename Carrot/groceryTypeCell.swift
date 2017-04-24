@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 class groceryTypeCell: UICollectionViewCell {
+    //Grocery Table Cell
     weak var delegate: UISearchBarDelegate?
     @IBOutlet weak var groceryImage: UIImageView!
     @IBOutlet weak var groceryTitle: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 class ingredientCell: UITableViewCell {
-    
+    //cell for the ingredient Table 
     @IBOutlet var ingredientName: UILabel!
     @IBOutlet var ingredientCount: UILabel!
     @IBOutlet var ingredientMeasurementType: UILabel!

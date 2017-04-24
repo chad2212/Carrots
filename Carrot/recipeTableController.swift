@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//FIRST PAGE IN THE RECIPE SECTION OF THE APPLICATION
 class recipeTableController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     

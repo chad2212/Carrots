@@ -8,7 +8,7 @@
 
 import UIKit
 import SQLite
-
+//holds the data for a grocery Item
 struct groceryType{
     let title : String
     let image : UIImage

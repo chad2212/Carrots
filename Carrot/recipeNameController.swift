@@ -23,7 +23,7 @@ class recipeNameController : UIViewController{
         
     }
     
- 
+    //allows for seuges (pushes to new view controller)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toAddIngridientSegue"){
             print("Inside segue controller to pass obj")

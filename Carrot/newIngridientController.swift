@@ -21,6 +21,9 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet var ingredientTable: UITableView!
     
+    
+    
+    //Adds an ingredient to the database via call to SQLite
     @IBAction func addIngredient(_ sender: UIButton) {
         //add it to the database, reload the ingredientList, then reloadTheTable
         let nameInput = self.ingredientNameField.text
@@ -52,11 +55,14 @@ class newIngredientController : UIViewController, UITableViewDataSource, UITable
         //Getting data back from database
         
     }
+    //reload the data every time the view appears.
     override func viewDidAppear(_ animated: Bool) {
         ingredientList = SQLiteDB.instance.getIngredients(recipeID: (receivedRecipeObj?.id)!)
         ingredientTable.reloadData()
     }
     
+    
+    //
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -9,7 +9,8 @@
 import UIKit
 import SQLite
 
-
+// THIS IS THE FIRST VIEW CONTROLLER IN THE FRIDGE SECTION OF THE APPLICATION 
+//SHOULD DISPLAY 4 CATEGORIES -> MEAT PRODUCE DAIRY OTHERS
 class FirstViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     @IBOutlet var Groceries: UICollectionView!

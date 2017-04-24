@@ -8,7 +8,7 @@
 
 import UIKit
 class newIngredientCell: UITableViewCell {
-    
+    //cell for ingredeitn table in the expanded recipe view
     @IBOutlet var ingredientName: UILabel!
     @IBOutlet var ingredientCount: UILabel!
     @IBOutlet var ingredientMeasurementType: UILabel!

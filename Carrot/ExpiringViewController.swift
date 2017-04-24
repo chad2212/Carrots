@@ -9,6 +9,8 @@
 import UIKit
 import SQLite
 
+
+//MAIN VIEW CONTROLLER FOR THE EXPIRATION PORTION OF THE APPLICATION
 class ExpiritingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     var expiringFoodList:[groceryItem] = []
@@ -51,6 +53,7 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
             cell.expDate?.text =  dateToString(stringInDate: expiringFoodList[indexPath.row].expiringDate)
             return cell
     }
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         //print ("Here")
         //print (expiringFoodList)

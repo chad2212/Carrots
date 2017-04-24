@@ -8,6 +8,8 @@
 
 import UIKit
 class detailedGroceryTableCell: UITableViewCell {
+    
+    //the detailed grocery cell
     weak var delegate: UISearchBarDelegate?
     
     @IBOutlet var itemPurchasedDate: UILabel!

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//NOT USED
 class SecondViewController: UIViewController {
 
     override func viewDidLoad() {

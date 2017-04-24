@@ -13,31 +13,32 @@ public class SQLiteDB {
     static let instance = SQLiteDB()
     private let db: Connection?
     
+    //food item table
     private let foodItems = Table("foodItems")
-    private let id = Expression<Int64>("id")
-    private let name = Expression<String>("name")
-    private let count = Expression<Double>("count")
-    private let storedLocation = Expression<String>("storedLocation")
-    private let purchasedDate = Expression<String>("purchasedDate")
-    private let expiringDate = Expression<String>("expiringDate")
-    private let foodType = Expression<String>("foodType")
-    private let measurementType = Expression<String>("measurementType")
+    private let id = Expression<Int64>("id") //unique id
+    private let name = Expression<String>("name") // name of grocery item
+    private let count = Expression<Double>("count") //the number of items
+    private let storedLocation = Expression<String>("storedLocation") //location (fridge, pantry, freezer)
+    private let purchasedDate = Expression<String>("purchasedDate") //purchase date
+    private let expiringDate = Expression<String>("expiringDate") //expiration date
+    private let foodType = Expression<String>("foodType") // type of food (meat dairy other, produce)
+    private let measurementType = Expression<String>("measurementType") // measurement type
     
     
     
     
     //recipe table
     private let recipes = Table("recipes");
-    private let recipeID = Expression<Int64>("recipeID");
-    private let recipeName = Expression<String>("recipeName");
-    private let recipeInstructions = Expression<String>("instructions");
+    private let recipeID = Expression<Int64>("recipeID"); // id
+    private let recipeName = Expression<String>("recipeName"); //name
+    private let recipeInstructions = Expression<String>("instructions"); //instructions
     
     //ingredient table
     private let ingredients = Table("ingredients");
-    private let relatedRecipeID = Expression<Int64>("relatedrecipeID");
-    private let ingredientName = Expression<String>("ingredientName");
-    private let ingredientCount = Expression<Double>("ingredientCount");
-    private let ingredientMeasurement = Expression<String>("ingredientMeasurement");
+    private let relatedRecipeID = Expression<Int64>("relatedrecipeID"); // ID
+    private let ingredientName = Expression<String>("ingredientName"); // ingredient Name
+    private let ingredientCount = Expression<Double>("ingredientCount"); // count
+    private let ingredientMeasurement = Expression<String>("ingredientMeasurement"); //measurement type
     
 
     
@@ -56,6 +57,8 @@ public class SQLiteDB {
         createTable()
     }
     
+    
+    //creates the tables
     func createTable() {
         do {
             try db!.run(foodItems.create(ifNotExists: true) { t in
@@ -91,6 +94,9 @@ public class SQLiteDB {
             print("Unable to create table")
         }
     }
+    
+    
+    //Called when adding grocery items to the data base from the add grocery item page
     func addGroceryItem(addName: String, addCount: Double, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String, addMeasurementType: String) -> Int64? {
         do {
             let insert = foodItems.insert(
@@ -111,6 +117,9 @@ public class SQLiteDB {
         }
     }
     
+    
+    
+    //Called when adding a recipe from the add recipe page
     func addRecipe(addName: String, addInstructions: String) -> Int64?{
         do {
             let insert = recipes.insert(
@@ -124,6 +133,7 @@ public class SQLiteDB {
         }
     }
     
+    //Called when adding ingredients from the add recipe page
     func addIngredient(addRecipeID: Int64, addIngredientName: String, addIngredientCount: Double, addMeasurementType:String) -> Int64?{
         do {
             let insert = ingredients.insert(
@@ -139,6 +149,7 @@ public class SQLiteDB {
         }
     }
     
+    //returns all grocery items the user has in the fridge
     func getGroceryItems() -> [groceryItem] {
             var groceryItems = [groceryItem]()
             
@@ -161,7 +172,9 @@ public class SQLiteDB {
             
             return groceryItems
     }
-        
+    
+    
+    //deletes a specific grocery item (with id cid)
     func deleteGroceryItem(cid: Int64) -> Bool {
             do {
                 let item = foodItems.filter(id == cid)
@@ -172,7 +185,8 @@ public class SQLiteDB {
             }
             return false
     }
-        
+    
+    //
     func updateGroceryItem(cid:Int64, newFoodItem: groceryItem) -> Bool {
             let item = foodItems.filter(id == cid)
             do {
@@ -195,6 +209,7 @@ public class SQLiteDB {
     }
     
     
+    //find grocery items where the name matches
     func whereNameMatches(input:String) -> [groceryItem]? {
         var groceryItems = [groceryItem]()
         
@@ -215,6 +230,7 @@ public class SQLiteDB {
         return groceryItems
     }
     
+    //returns a list of grocery items ordered by the expiration date
     func orderByExpirationDate() -> [groceryItem]? {
         var groceryItems = [groceryItem]()
         
@@ -231,7 +247,7 @@ public class SQLiteDB {
         return groceryItems
     }
     
-    
+    //returns all the recipes for the user
     func getRecipeItems() -> [recipe] {
         var recipes = [recipe]()
         do {
@@ -261,6 +277,7 @@ public class SQLiteDB {
         return recipes
     }
     
+    //returns all the ingredients for a specific recipe ID
     func getIngredients(recipeID:Int64) -> [ingredientItem] {
         var ingredientList = [ingredientItem]()
         do{

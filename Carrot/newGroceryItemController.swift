@@ -9,6 +9,7 @@
     import UIKit
     import SQLite
     
+    //CONTROLLER FOR ADDING GROCERY ITEMS 
     class newGroceryItemController: UIViewController {
         
         

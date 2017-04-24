@@ -9,7 +9,7 @@
 import UIKit
 class groceryTableCell: UITableViewCell {
     weak var delegate: UISearchBarDelegate?
-    
+    //grocery table cell (THE REAL ONE)
     @IBOutlet var itemName: UILabel!
     @IBOutlet var itemNumber: UILabel!
     

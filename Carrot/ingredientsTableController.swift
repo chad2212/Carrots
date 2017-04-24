@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//INGREDIENT CONTROLLER SHOULD DISPLAY THE INGREIDENTS IN THE RECIPE CURRENTLY
 class ingredientsTableController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var recipeIngredientList:[ingredientItem] = []

@@ -21,13 +21,15 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
 
         expiringTable.delegate = self
         expiringTable.dataSource = self
-        expiringTable.reloadData()
         expiringFoodList = SQLiteDB.instance.orderByExpirationDate()!
+        expiringTable.reloadData()
+        
         
         //Getting data back from database
         
     }
     override func viewDidAppear(_ animated: Bool) {
+        expiringFoodList = SQLiteDB.instance.orderByExpirationDate()!
         expiringTable.reloadData()
     }
     
@@ -37,7 +39,6 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return expiringFoodList.count
     }
     
@@ -79,7 +80,12 @@ class ExpiritingViewController: UIViewController, UITableViewDataSource, UITable
         if editingStyle == .delete {
             //let deleteElement = tempList[indexPath.row]
             //deleteItem(identifier: deleteElement)
-            expiringTable.reloadData()
+            let cid = expiringFoodList[indexPath.row].id
+            if (SQLiteDB.instance.deleteGroceryItem(cid: cid)){
+                expiringFoodList = SQLiteDB.instance.orderByExpirationDate()!
+                expiringTable.reloadData()
+            }
+            
             
         }
         

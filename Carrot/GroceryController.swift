@@ -53,6 +53,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        localGroceryList = SQLiteDB.instance.getGroceryItems()
         separateIntoDifferentList()
         groceryItemized.reloadData()
     }
@@ -84,7 +85,11 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             let deleteElement = tempList[indexPath.row]
             deleteItem(identifier: deleteElement)
             separateIntoDifferentList()
-            groceryItemized.reloadData()
+            if (SQLiteDB.instance.deleteGroceryItem(cid: deleteElement.id))
+            {
+                groceryItemized.reloadData()
+            }
+            
             
         }
         
@@ -169,7 +174,7 @@ class GroceryController: UIViewController, UITableViewDataSource, UITableViewDel
             let queryString = selectCorrectList(identifier: (toPass!))[(indexPath.row)].name
             let specificList:[groceryItem] = (SQLiteDB.instance.whereNameMatches(input: queryString))!
             svc.specificList = specificList;
-            svc.toPass = selectCorrectList(identifier: (toPass!))[(indexPath.row)].name
+            svc.toPass = queryString
 
         }
     }

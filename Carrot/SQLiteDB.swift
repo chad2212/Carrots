@@ -21,6 +21,23 @@ public class SQLiteDB {
     private let purchasedDate = Expression<String>("purchasedDate")
     private let expiringDate = Expression<String>("expiringDate")
     private let foodType = Expression<String>("foodType")
+    
+    
+    
+    
+    //recipe table
+    private let recipes = Table("recipes");
+    private let recipeID = Expression<Int64>("recipeID");
+    private let recipeName = Expression<String>("recipeName");
+    
+    
+    //ingredient table
+    private let ingredients = Table("ingredients");
+    private let relatedRecipeID = Expression<Int64>("relatedrecipeID");
+    private let ingredientName = Expression<String>("ingredientName");
+    private let ingredientCount = Expression<Int64>("ingredientCount");
+    private let ingredientMeasurement = Expression<String>("ingredientMeasurement");
+    
 
     
     private init() {
@@ -52,8 +69,25 @@ public class SQLiteDB {
         } catch {
             print("Unable to create table")
         }
+        do {
+            try db!.run(recipes.create(ifNotExists: true) { t in
+                t.column(recipeID, primaryKey: .autoincrement) //     "id" INTEGER PRIMARY KEY NOT NULL,
+                t.column(recipeName)
+            })
+        } catch {
+            print("Unable to create table")
+        }
+        do {
+            try db!.run(ingredients.create(ifNotExists: true) { t in
+                t.column(relatedRecipeID, references: recipes,recipeID) //     "id" INTEGER PRIMARY KEY NOT NULL,
+                t.column(ingredientName)
+                t.column(ingredientCount)
+                t.column(ingredientMeasurement)
+            })
+        } catch {
+            print("Unable to create table")
+        }
     }
-    
     func addGroceryItem(addName: String, addCount: Int64, addStoredLocation: String, addPurchasedDate:String, addExpiringDate:String,addFoodType:String) -> Int64? {
         do {
             let insert = foodItems.insert(
@@ -69,6 +103,33 @@ public class SQLiteDB {
             return id
         } catch {
             print("Insert failed")
+            return -1
+        }
+    }
+    
+    func addRecipe(addName: String) -> Int64?{
+        do {
+            let insert = recipes.insert(
+                recipeName <- addName
+            )
+            let id = try db!.run(insert)
+            return id
+        } catch {
+            return -1
+        }
+    }
+    
+    func addIngredient(addRecipeID: Int64, addIngredientName: String, addIngredientCount: Int64, addMeasurementType:String) -> Int64?{
+        do {
+            let insert = ingredients.insert(
+                relatedRecipeID <- addRecipeID,
+                ingredientName <- addIngredientName,
+                ingredientCount <- addIngredientCount,
+                ingredientMeasurement <- addMeasurementType
+            )
+            let id = try db!.run(insert)
+            return id
+        } catch {
             return -1
         }
     }
@@ -174,6 +235,90 @@ public class SQLiteDB {
         }
         return groceryItems
     }
+    
+    
+    func getRecipeItems() -> [recipe] {
+        var recipes = [recipe]()
+        do {
+            for item in try db!.prepare(self.recipes) {
+                let relevantIngredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == item[recipeID]))
+                var ingredientList = [ingredientItem]()
+                for groceryItem in relevantIngredients
+                {
+                    ingredientList.append(ingredientItem(
+                        id: groceryItem[recipeID],
+                        name: groceryItem[ingredientName],
+                        count: groceryItem[ingredientCount],
+                        measurementType: groceryItem[ingredientMeasurement]
+                    ))
+                }
+                recipes.append(recipe(
+                    id: item[recipeID],
+                    name: item[recipeName],
+                    ingredientList: ingredientList
+                ))
+            }
+        } catch {
+            print("Retrieving all recipes failed")
+        }
+        
+        return recipes
+    }
+    
+    func getIngredients(recipeID:Int64) -> [ingredientItem] {
+        var ingredientList = [ingredientItem]()
+        do{
+            let ingredientQuery = self.ingredients.filter(relatedRecipeID == recipeID)
+            let ingredientTable = try db!.prepare(ingredientQuery)
+            for ingredient in ingredientTable{
+                ingredientList.append(ingredientItem(id: ingredient[relatedRecipeID], name: ingredient[ingredientName], count: ingredient[ingredientCount], measurementType: ingredient[ingredientMeasurement]))
+            }
+        } catch {
+            print ("Retrieving all ingredients failed")
+        }
+        return ingredientList
+    }
+
+    
+    func findNumberMissing(inputID: Int64) -> String {
+        var groceryNames = [String]()
+        var groceryCounts = [Int]()
+        var missingIngredientCount = 0 ;
+        do
+        {
+            let items = try db!.prepare(foodItems)
+            for item in items{
+                groceryNames.append(item[name]);
+                groceryCounts.append(Int(item[count]));
+            }
+            
+        }
+        catch{
+            print("Nothing was found")
+        }
+        
+        do
+        {
+            let ingredients = try db!.prepare(self.ingredients.filter(relatedRecipeID == Int64(inputID) ));
+            for ingredient in ingredients{
+                let ingredientName = ingredient[self.ingredientName];
+                let ingredientCount = ingredient[self.ingredientCount];
+                for index in 0...groceryCounts.count
+                {
+                    if(groceryNames[index] == ingredientName && Int64(groceryCounts[index]) >= ingredientCount)
+                    {
+                        missingIngredientCount += 1;
+                    }
+                }
+            }
+        }
+        catch {
+            print("Nothing was found in ingrdeints");
+        }
+        return String(missingIngredientCount);
+        
+    }
+
         
 }
 

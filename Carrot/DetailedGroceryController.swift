@@ -27,7 +27,6 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         
         super.viewDidLoad()
         if((toPass) != nil){
-            //Load the database here based on the title
             self.foodType.text = toPass!
         }
         detailedGroceryItemized.delegate = self
@@ -46,6 +45,7 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         
     }
     override func viewDidAppear(_ animated: Bool) {
+        specificList = SQLiteDB.instance.whereNameMatches(input: toPass!)!
         detailedGroceryItemized.reloadData()
     }
     
@@ -79,7 +79,13 @@ class DetailedGroceryController: UIViewController, UITableViewDataSource, UITabl
         if editingStyle == .delete {
             //let deleteElement = tempList[indexPath.row]
             //deleteItem(identifier: deleteElement)
-            detailedGroceryItemized.reloadData()
+            let cid = specificList[indexPath.row].id
+            if (SQLiteDB.instance.deleteGroceryItem(cid: cid))
+            {
+                specificList = SQLiteDB.instance.whereNameMatches(input: toPass!)!
+                detailedGroceryItemized.reloadData()
+            }
+            
             
         }
         

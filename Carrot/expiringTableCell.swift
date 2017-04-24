@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-class expiringTableCell: UICollectionViewCell {
+class expiringTableCell: UITableViewCell {
 
     @IBOutlet weak var itemName: UILabel!
     @IBOutlet weak var itemCount: UILabel!

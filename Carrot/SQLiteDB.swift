@@ -150,12 +150,28 @@ public class SQLiteDB {
             }
         }
         catch{
-            print("Nothing was found")
+            print("Couldn't filter with matching names")
         }
             
         
         
         
+        return groceryItems
+    }
+    
+    func orderByExpirationDate() -> [groceryItem]? {
+        var groceryItems = [groceryItem]()
+        
+        do
+        {
+            let items = try db!.prepare(foodItems.order(expiringDate.desc))
+            for item in items{
+                groceryItems.append(groceryItem(id: item[id], name: item[name], count: item[count], storedLocation: item[storedLocation], purchasedDate: stringToDate(dateInString: item[purchasedDate]), expiringDate: stringToDate(dateInString: item[expiringDate]), foodType: item[foodType]));
+            }
+        }
+        catch {
+            print ("Couldn't sort by expiration date")
+        }
         return groceryItems
     }
         

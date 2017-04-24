@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SQLite
+
 
 class DetailedGroceryController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
